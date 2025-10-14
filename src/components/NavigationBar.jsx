@@ -12,50 +12,107 @@ import {
 } from "flowbite-react";
 import { useContext } from "react";
 import { AuthContext } from "../Provider/AuthProvider";
-import { Link } from "react-router-dom";
+import { Link, NavLink } from "react-router-dom";
+
 const NavigationBar = () => {
-    const {user,logOut}=useContext(AuthContext)
-    const signOut=()=>{
-       logOut()
-    }   
-    return (
-    <Navbar className="bg-gray-400/50 mx-auto" fluid rounded>
-      <NavbarBrand href="https://flowbite-react.com">
-        
-        <span className="self-center whitespace-nowrap text-xl font-semibold dark:text-white">Volunteer Hub</span>
+  // ✅ navLinks data
+  const navLinks = [
+    { id: 1, name: "Home", path: "/" },
+    { id: 2, name: "All Volunteers", path: "/allvolunteerneedposts" },
+    { id: 3, name: "Contact", path: "/contact" },
+  ];
+
+  const { user, logOut } = useContext(AuthContext);
+
+  const signOut = () => {
+    logOut();
+  };
+
+  return (
+    <Navbar
+      fluid
+      rounded
+      className="bg-white/60 backdrop-blur-md shadow-sm sticky top-0 z-50"
+    >
+      {/* Brand */}
+      <NavbarBrand as={Link} to="/">
+        <span className="self-center whitespace-nowrap text-2xl font-semibold text-blue-600">
+          Volunteer Hub
+        </span>
       </NavbarBrand>
-      <div className="flex md:order-2">
+
+      {/* Avatar + Toggle */}
+      <div className="flex items-center md:order-2">
         <Dropdown
           arrowIcon={false}
           inline
           label={
-            <Avatar alt="User settings" img={user && user.photoURL} rounded />
+            <Avatar
+              alt="User settings"
+              img={user?.photoURL}
+              rounded
+              bordered
+              size="sm"
+            />
           }
         >
           <DropdownHeader>
-            <span className="block text-sm">{user && user.displayName}</span>
-            <span className="block truncate text-sm font-medium">{user && user.email}</span>
+            <span className="block text-sm font-medium text-gray-800">
+              {user?.displayName || "Guest"}
+            </span>
+            {user && (
+              <span className="block truncate text-sm text-gray-500">
+                {user.email}
+              </span>
+            )}
           </DropdownHeader>
-          <DropdownItem>
-            <Link>Add Volunteer need Post</Link>
-          </DropdownItem>
-          <DropdownItem>
-            <Link>Manage My Posts</Link>
+
+          {user && (
+            <>
+              <DropdownItem as={Link} to="/add-post">
+                Add Volunteer Need Post
+              </DropdownItem>
+              <DropdownItem as={Link} to="/my-posts">
+                Manage My Posts
+              </DropdownItem>
+              <DropdownDivider />
+            </>
+          )}
+
+          {user ? (
+            <DropdownItem onClick={signOut} className="text-red-600">
+              Sign out
             </DropdownItem>
-          <DropdownDivider />
-          <DropdownItem onCanPlay={signOut}>Sign out</DropdownItem>
+          ) : (
+            <DropdownItem as={Link} to="/login">
+              Login
+            </DropdownItem>
+          )}
         </Dropdown>
-        <NavbarToggle />
+
+        <NavbarToggle className="ml-2 text-gray-600 hover:text-blue-600" />
       </div>
-      <NavbarCollapse>
-        <NavbarLink href="#" active>
-          Home
-        </NavbarLink>
-        <NavbarLink href="#"> All volunteer Need posts</NavbarLink>
-        <NavbarLink href="#">Contact</NavbarLink>
+
+      {/* Navbar Links */}
+      <NavbarCollapse className="md:justify-center md:space-x-6">
+        {navLinks.map((link) => (
+          <NavLink
+            key={link.id}
+            to={link.path}
+            className={({ isActive }) =>
+              `block py-2 px-3 rounded-md transition duration-200 ${
+                isActive
+                  ? "text-blue-600 font-semibold bg-blue-50"
+                  : "text-gray-700 hover:text-blue-600 hover:bg-blue-50"
+              }`
+            }
+          >
+            {link.name}
+          </NavLink>
+        ))}
       </NavbarCollapse>
     </Navbar>
-    );
+  );
 };
 
 export default NavigationBar;
