@@ -22,11 +22,15 @@ const NavigationBar = () => {
         { id: 3, name: "Contact", path: "/contact" },
     ];
 
-    const { user, logOut } = useContext(AuthContext);
+    const { user, Logout } = useContext(AuthContext);
 
-    const signOut = () => {
-        logOut();
-    };
+    const handelLogout = () => {
+        console.log("logout");
+        Logout()
+            .then(() => {}) .catch((error) => {
+                console.log(error);
+            });
+    }
 
     return (
         <Navbar
@@ -78,16 +82,9 @@ const NavigationBar = () => {
                             <DropdownDivider />
                         </>
                     )}
-
-                    {user ? (
-                        <DropdownItem onClick={signOut} className="text-red-600">
-                            Sign out
-                        </DropdownItem>
-                    ) : (
-                        <DropdownItem as={Link} to="/login">
-                            Login
-                        </DropdownItem>
-                    )}
+                    {
+                        user ? <DropdownItem onClick={handelLogout} className="hover:text-red-500">Log out</DropdownItem>:<DropdownItem as={Link} to="/login">Log in</DropdownItem>          
+                    }
                 </Dropdown>
 
                 <NavbarToggle className="ml-2 text-gray-600 hover:text-blue-600" />

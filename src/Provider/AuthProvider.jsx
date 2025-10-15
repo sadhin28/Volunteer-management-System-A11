@@ -1,85 +1,88 @@
-import { createContext, useEffect, useState } from "react";
-export const AuthContext=createContext();
 
+import  { createContext, useState } from 'react';
+import { useEffect} from "react";
+import { createUserWithEmailAndPassword, getAuth, onAuthStateChanged, sendPasswordResetEmail, signInWithEmailAndPassword, signOut, updateProfile } from "firebase/auth";
+import app from '../firebase/firebase.config';
 
-import { createUserWithEmailAndPassword, GoogleAuthProvider, onAuthStateChanged, sendPasswordResetEmail, signInWithEmailAndPassword, signInWithPopup, signOut, updateProfile } from "firebase/auth";
-import auth from "../../src/firebase/firebase.config";
-
-
-const AuthProvider = ({children}) => {
-     const [user, setUser] = useState(null);
-    
-     const [loading, setLoading] = useState(true);
-
-    // Create a new user
-    const createUser = (email, password) => {
-        return createUserWithEmailAndPassword(auth, email, password);
-    };
-
-    // Login an existing user
-    const Login = (email, password) => {
-        setLoading(true);
-        return signInWithEmailAndPassword(auth, email, password);
-    };
-
-    // Set up auth state listener
-    useEffect(() => {
-        const unsubscribe = onAuthStateChanged(auth, (user) => {
-            setUser(user);
-            setLoading(false);
-        });
-        return () => {
-            unsubscribe();
-        };
-    }, []);
-
-    // Google sign-in provider
-    const provider = new GoogleAuthProvider();
-    const signInWithGoogle = () => {
-        return signInWithPopup(auth, provider);
-    };
-    //password reset email
-
-    const passReset = (email) => {
-        return sendPasswordResetEmail(auth, email)
+export const AuthContext= createContext();
+const auth = getAuth(app)
+const Authprovider = ({children}) => {
+   const [user,setuser]=useState(null)
+   const [loading,setloading]=useState(true)
+   const [unseenCount, setUnseenCount] = useState(0);
+    //Create user
+    const CreateNewUser=(email,password)=>{
+        setloading(true);
+        return createUserWithEmailAndPassword(auth,email,password)
     }
-    // Logout the user
-    const logOut = () => {
-        setLoading(true);
-        return signOut(auth);
-    };
+ 
 
-    // Profile update
+     // Profile update
     const updateUserProfile = (name, photo) => {
         return updateProfile(auth.currentUser, {
             displayName: name,
             photoURL: photo,
         }).then(() => {
 
-            setUser({
+            setuser({
                 ...auth.currentUser,
                 displayName: name,
                 photoURL: photo,
             });
         });
     };
-  
-    const authInfo={
-        createUser,
-        Login,
-        user,
-        logOut,
-        loading,
-        signInWithGoogle,
-        updateUserProfile,
-        passReset
+      useEffect(()=>{
+     const  unsubscribe =  onAuthStateChanged(auth,async (currentUser)=>{
+        if(currentUser){
+           setuser(currentUser) 
+        }else{
+            setuser(null)
+            
+        }   
+       
+         setloading(false);
+        })
+        return()=>{
+            unsubscribe();
+            
+        }
+    },[])
+    //LogIn
+    const login =(email,password)=>{
+        setloading(true);
+        return signInWithEmailAndPassword(auth,email,password)
     }
-    
+    //Logout
+    const Logout=()=>{
+        setloading(true)
+        return signOut(auth)
+    }
+      //password reset email
+
+    const passReset = (email) => {
+        return sendPasswordResetEmail(auth, email)
+    }
+   
+   const authInfo={
+    user,
+    setuser,
+    loading,
+    setloading,
+    updateUserProfile,
+    passReset,
+    login,
+    CreateNewUser,
+    Logout,
+    setUnseenCount,
+    unseenCount
+
+
+   }
     return (
-       <AuthContext.Provider value={authInfo}>
-            {children}
-       </AuthContext.Provider>
+      <AuthContext.Provider value={authInfo}>
+        {children}
+      </AuthContext.Provider>
     );
 };
 
-export default AuthProvider;
+export default Authprovider;
