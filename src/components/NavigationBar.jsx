@@ -13,7 +13,8 @@ import {
 import { useContext } from "react";
 import { AuthContext } from "../Provider/AuthProvider";
 import { Link, NavLink } from "react-router-dom";
-
+import { FaHeart } from "react-icons/fa";
+  
 const NavigationBar = () => {
     // ✅ navLinks data
     const navLinks = [
@@ -36,13 +37,13 @@ const NavigationBar = () => {
         <Navbar
             fluid
             rounded
-            className="bg-white/60 backdrop-blur-md shadow-sm sticky top-0 z-50"
+            className="bg-[#511AB7FF]/20 backdrop-blur-md shadow-sm sticky top-0 z-50 "
         >
             {/* Brand */}
-            <NavbarBrand as={Link} to="/">
-                <span className="self-center whitespace-nowrap text-2xl font-semibold text-[#511AB7FF]">
-                    Volunteer Hub
-                </span>
+            <NavbarBrand className="flex font-bold gap-2 text-2xl items-center" as={Link} to="/">
+              <FaHeart className="text-red-500"/>
+              <p><span className="text-green-500">Volunteer</span> Hub</p>
+            
             </NavbarBrand>
 
             {/* Avatar + Toggle */}

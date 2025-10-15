@@ -6,6 +6,7 @@ import Contact from "../components/Contact";
 import AuthForm from "../components/AuthForm";
 import ForgatePassword from "../components/ForgatePassword";
 import Errorpage from "../components/Errorpage";
+import PrivateRoute from "./PrivateRoute";
 
 const router = createBrowserRouter([
 {
@@ -20,7 +21,7 @@ const router = createBrowserRouter([
     },
     {
         path:'/allvolunteerneedposts',
-        element:<AllVolunteerNeed/>
+        element:<PrivateRoute><AllVolunteerNeed/></PrivateRoute>
     },
     {
         path:'/login',

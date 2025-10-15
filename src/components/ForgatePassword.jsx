@@ -29,7 +29,7 @@ const ForgatePassword = () => {
             });
     };
     return (
-         <div className='flex items-center justify-center min-h-[calc(100vh-100px)] px-4'>
+         <div className='flex items-center justify-center px-4'>
             <div className="max-w-md mx-auto border-2 border-[#511AB7FF] shadow-md hover:shadow-lg rounded-lg overflow-hidden  grid w-11/12  justify-center items-center card bg-base-100  max-w-lg shrink-0 shadow-sm mx-auto  px-0 md:px-3 py-7 my-16 ">
             
             <h3 className="text-center text-2xl font-semibold mb-4">Reset Your Password</h3>
