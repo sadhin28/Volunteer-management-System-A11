@@ -9,6 +9,8 @@ import Errorpage from "../components/Errorpage";
 import PrivateRoute from "./PrivateRoute";
 import AddVolunteer from "../components/AddVolunteer";
 import ManageMyPosts from "../components/ManageMyPosts";
+import PrivacyPolicy from "../components/PrivacyPolicy";
+import TermsAndCondition from "../components/TermsAndCondition";
 
 const router = createBrowserRouter([
 {
@@ -44,6 +46,14 @@ const router = createBrowserRouter([
     {
         path:"/my-posts",
         element:<PrivateRoute><ManageMyPosts/></PrivateRoute>
+    },
+    {
+        path:"/privacy-policy",
+        element:<PrivacyPolicy/>
+    },
+    {
+        path:"/terms-and-conditions",
+        element:<TermsAndCondition/>
     }
 ]
 }])

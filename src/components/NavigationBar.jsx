@@ -14,7 +14,7 @@ import { useContext } from "react";
 import { AuthContext } from "../Provider/AuthProvider";
 import { Link, NavLink } from "react-router-dom";
 import { FaHeart } from "react-icons/fa";
-  
+
 const NavigationBar = () => {
     // ✅ navLinks data
     const navLinks = [
@@ -28,7 +28,7 @@ const NavigationBar = () => {
     const handelLogout = () => {
         console.log("logout");
         Logout()
-            .then(() => {}) .catch((error) => {
+            .then(() => { }).catch((error) => {
                 console.log(error);
             });
     }
@@ -37,13 +37,13 @@ const NavigationBar = () => {
         <Navbar
             fluid
             rounded
-            className="bg-[#511AB7FF]/20 backdrop-blur-md shadow-sm sticky top-0 z-50 "
+            className=" bg-[#511AB7FF]/20 backdrop-blur-md shadow-sm sticky top-0 z-50 "
         >
             {/* Brand */}
             <NavbarBrand className="flex font-bold gap-2 text-2xl items-center" as={Link} to="/">
-              <FaHeart className="text-red-500"/>
-              <p><span className="text-green-500">Volunteer</span> Hub</p>
-            
+                <FaHeart className="text-red-500" />
+                <p><span className="text-green-500">Volunteer</span> Hub</p>
+
             </NavbarBrand>
 
             {/* Avatar + Toggle */}
@@ -84,7 +84,7 @@ const NavigationBar = () => {
                         </>
                     )}
                     {
-                        user ? <DropdownItem onClick={handelLogout} className="hover:text-red-500">Log out</DropdownItem>:<DropdownItem as={Link} to="/login">Log in</DropdownItem>          
+                        user ? <DropdownItem onClick={handelLogout} className="hover:text-red-500">Log out</DropdownItem> : <DropdownItem as={Link} to="/login">Log in</DropdownItem>
                     }
                 </Dropdown>
 
