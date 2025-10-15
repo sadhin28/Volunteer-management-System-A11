@@ -40,7 +40,7 @@ const NavigationBar = () => {
         >
             {/* Brand */}
             <NavbarBrand as={Link} to="/">
-                <span className="self-center whitespace-nowrap text-2xl font-semibold text-blue-600">
+                <span className="self-center whitespace-nowrap text-2xl font-semibold text-[#511AB7FF]">
                     Volunteer Hub
                 </span>
             </NavbarBrand>
@@ -87,7 +87,7 @@ const NavigationBar = () => {
                     }
                 </Dropdown>
 
-                <NavbarToggle className="ml-2 text-gray-600 hover:text-blue-600" />
+                <NavbarToggle className="ml-2 text-gray-600 hover:text-[#511AB7FF]" />
             </div>
 
             {/* Navbar Links */}
@@ -98,9 +98,9 @@ const NavigationBar = () => {
                         to={link.path}
                         className={({ isActive }) =>
                             `relative block py-2 px-3 rounded-md transition duration-200
-     ${isActive ? "text-blue-600 font-semibold" : "text-gray-700 hover:text-blue-600"}
+     ${isActive ? "text-[#511AB7FF] font-semibold" : "text-gray-700 hover:text-[#511AB7FF]"}
      after:content-[''] after:absolute after:left-0 after:bottom-0 after:h-[2px] after:w-0 
-     after:bg-blue-600 after:transition-all after:duration-1000 hover:after:w-[100%]`
+     after:bg-[#511AB7FF] after:transition-all after:duration-1000 hover:after:w-[100%]`
                         }
                     >
                         {link.name}

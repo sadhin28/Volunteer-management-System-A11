@@ -5,11 +5,13 @@ import AllVolunteerNeed from "../components/AllVolunteerNeed";
 import Contact from "../components/Contact";
 import AuthForm from "../components/AuthForm";
 import ForgatePassword from "../components/ForgatePassword";
+import Errorpage from "../components/Errorpage";
 
 const router = createBrowserRouter([
 {
    path:'/',
    element:<Root/>,
+   errorElement:<Errorpage/>,
    children:[
     {
       path:'/',
