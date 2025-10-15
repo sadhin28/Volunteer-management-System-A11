@@ -7,6 +7,8 @@ import AuthForm from "../components/AuthForm";
 import ForgatePassword from "../components/ForgatePassword";
 import Errorpage from "../components/Errorpage";
 import PrivateRoute from "./PrivateRoute";
+import AddVolunteer from "../components/AddVolunteer";
+import ManageMyPosts from "../components/ManageMyPosts";
 
 const router = createBrowserRouter([
 {
@@ -34,6 +36,14 @@ const router = createBrowserRouter([
     {
         path:'/contact',
         element:<Contact/>
+    },
+    {
+        path:'/add-post',
+        element:<PrivateRoute><AddVolunteer/></PrivateRoute>
+    },
+    {
+        path:"/my-posts",
+        element:<PrivateRoute><ManageMyPosts/></PrivateRoute>
     }
 ]
 }])
