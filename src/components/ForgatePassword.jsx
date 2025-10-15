@@ -4,8 +4,10 @@ import React, { useContext, useState } from 'react';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { toast } from 'react-toastify';
 import { AuthContext } from '../Provider/AuthProvider';
+import useTitle from '../hooks/useTitle';
 
 const ForgatePassword = () => {
+    useTitle("Forgot password ?")
     const { passReset, LogOut } = useContext(AuthContext)
     const location = useLocation();
     const [email, setEmail] = useState(location.state?.email || "");

@@ -7,7 +7,10 @@ import { NavLink, useLocation, useNavigate } from "react-router-dom";
 import { FaGoogle } from "react-icons/fa";
 import { AuthContext } from "../Provider/AuthProvider";
 import app from "../firebase/firebase.config";
+import useTitle from "../hooks/useTitle";
+
 export default function AuthForm() {
+  useTitle("AuthForm")
   const { login, CreateNewUser ,user,setuser,updateUserProfile} = useContext(AuthContext);
   const [isRegister, setIsRegister] = useState(false);
  
@@ -19,6 +22,7 @@ export default function AuthForm() {
   const location = useLocation()
   const navigate = useNavigate()
   const from =location.state || "/"
+
   const handleSubmit = async () => {
     
     try {
