@@ -20,6 +20,7 @@ export default function AuthForm() {
   const navigate = useNavigate()
   const from =location.state || "/"
   const handleSubmit = async () => {
+    
     try {
       if (isRegister) {
         CreateNewUser(email, password)
