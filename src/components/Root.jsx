@@ -5,11 +5,11 @@ import Footer from './Footer';
 
 const Root = () => {
     return (
-        <div>
-            <header>
+        <div className='' >
+            <header className=''>
                <NavigationBar/>
             </header>
-            <main className='min-h-[calc(100vh-314px)]'>
+            <main className='max-w-7xl mx-auto px-4 mx-auto mt-14 md:mt-17  min-h-[calc(100vh-310px)]'>
                 <Outlet/>
             </main>
             <footer>

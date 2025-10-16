@@ -1,14 +1,20 @@
 import React from 'react';
 import useTitle from '../hooks/useTitle';
-import AwesomeSlider from 'react-awesome-slider';
 import 'react-awesome-slider/dist/styles.css';
+import Slider from './slider/Slider';
 const Home = () => {
     useTitle("Home")
+    
     return (
-        <div>
-           
-           
-        </div>
+       <div>
+        {/* Slider Sectin */}
+        <Slider/>
+        <Slider/>
+        <Slider/>
+        {/*  */}
+        
+       </div>
+
     );
 };
 
