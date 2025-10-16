@@ -62,7 +62,7 @@ const NavigationBar = () => {
               to="/"
             >
               <FaHeart className="text-red-500" />
-              <p>
+              <p className="text-[#511AB7FF]">
                 <span className="text-green-500">Volunteer</span> Hub
               </p>
             </NavbarBrand>
@@ -156,8 +156,11 @@ const NavigationBar = () => {
         } md:hidden`}
       >
         <div className="flex justify-between items-center p-4 border-b">
-          <h2 className="text-2xl font-semibold text-[#511AB7FF]">
-            Volunteer Hub
+          <h2 className="text-2xl flex items-center gap-1  font-bold text-[#511AB7FF]">
+            <FaHeart className="text-red-500" />
+              <p>
+                <span className="text-green-500">Volunteer</span> Hub
+              </p>
           </h2>
           <button
             onClick={() => setSidebarOpen(false)}
