@@ -7,7 +7,7 @@ const VolunteerNeedsNow = () => {
 
   useEffect(() => {
     // Fetch local JSON data
-    fetch('/public/volunteerPost.json')
+    fetch('/volunteerPost.json')
       .then((res) => res.json())
       .then((data) => {
         const sortedData = data.sort(
@@ -19,7 +19,7 @@ const VolunteerNeedsNow = () => {
   }, []);
 
   return (
-    <div className="my-10 ">
+    <div className="my-10">
       {/* Section Heading */}
       <div className="text-center text-xl font-bold md:text-4xl justify-center flex items-center gap-2  mb-10">
         <FaHeart className="text-red-500" />

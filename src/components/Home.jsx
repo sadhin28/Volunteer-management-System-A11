@@ -9,7 +9,7 @@ const Home = () => {
     return (
        <div>
         {/*Banner Slider Sectin */}
-       <section>
+       <section className='md:mt-0 mt-16'>
         <Slider/>
        </section>
         {/*Volunteer Needs Now Section  */}
