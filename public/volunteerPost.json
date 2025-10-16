@@ -1,0 +1,58 @@
+[
+  {
+    "_id": "1",
+    "thumbnail": "https://i.ibb.co/zSqK7qh/food-drive.jpg",
+    "title": "Community Food Distribution",
+    "category": "Community Service",
+    "deadline": "2025-10-20"
+  },
+  {
+    "_id": "2",
+    "thumbnail": "https://i.ibb.co/4PB4Dqn/blood-donation.jpg",
+    "title": "Urgent Blood Donation Drive",
+    "category": "Health & Wellness",
+    "deadline": "2025-10-18"
+  },
+  {
+    "_id": "3",
+    "thumbnail": "https://i.ibb.co/vh1VjrM/tree-planting.jpg",
+    "title": "Tree Plantation Campaign",
+    "category": "Environment",
+    "deadline": "2025-10-22"
+  },
+  {
+    "_id": "4",
+    "thumbnail": "https://i.ibb.co/XtH9hVh/cleaning.jpg",
+    "title": "Beach Cleaning Volunteer Program",
+    "category": "Environment",
+    "deadline": "2025-10-17"
+  },
+  {
+    "_id": "5",
+    "thumbnail": "https://i.ibb.co/QmpTRtN/education.jpg",
+    "title": "Teach Underprivileged Children",
+    "category": "Education",
+    "deadline": "2025-10-19"
+  },
+  {
+    "_id": "6",
+    "thumbnail": "https://i.ibb.co/YhJxYbc/animal-care.jpg",
+    "title": "Animal Shelter Assistance",
+    "category": "Animal Welfare",
+    "deadline": "2025-10-21"
+  },
+  {
+    "_id": "7",
+    "thumbnail": "https://i.ibb.co/dKby19M/old-age-home.jpg",
+    "title": "Elderly Care Volunteer Program",
+    "category": "Social Work",
+    "deadline": "2025-10-25"
+  },
+  {
+    "_id": "8",
+    "thumbnail": "https://i.ibb.co/tXq3X9y/cleanup.jpg",
+    "title": "City Park Cleanup Drive",
+    "category": "Community Service",
+    "deadline": "2025-10-23"
+  }
+]
