@@ -9,7 +9,7 @@ const Root = () => {
             <header className=''>
                <NavigationBar/>
             </header>
-            <main className='max-w-7xl mx-auto px-4 mx-auto mt-14 md:mt-17  min-h-[calc(100vh-310px)]'>
+            <main className='max-w-7xl mx-auto px-4 mx-auto mt-14 md:mt-17  min-h-[calc(100vh-314px)]'>
                 <Outlet/>
             </main>
             <footer>
