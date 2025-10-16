@@ -16,16 +16,14 @@ import { FaHeart } from "react-icons/fa";
 import { IoClose } from "react-icons/io5";
 
 const NavigationBar = () => {
-  const navLinks = [
-    { id: 1, name: "Home", path: "/" },
-    { id: 2, name: "All Volunteers", path: "/allvolunteerneedposts" },
-    { id: 3, name: "Contact", path: "/contact" },
-  ];
-
   const { user, Logout } = useContext(AuthContext);
   const [scrolled, setScrolled] = useState(false);
   const [sidebarOpen, setSidebarOpen] = useState(false);
-
+  const navLinks = [
+    { id: 1, name: "Home", path: "/" },
+    ...(user? [ { id: 2, name: "All Volunteers", path: "/allvolunteerneedposts" }]:[]),
+    { id: 3, name: "Contact", path: "/contact" },
+  ];
   // Scroll effect
   useEffect(() => {
     const handleScroll = () => {
@@ -95,6 +93,9 @@ const NavigationBar = () => {
 
                 {user && (
                   <>
+                    <DropdownItem as={Link} to="/my-profile">
+                      My Profile
+                    </DropdownItem>
                     <DropdownItem as={Link} to="/add-post">
                       Add Volunteer Need Post
                     </DropdownItem>

@@ -142,7 +142,7 @@ export default function AuthForm() {
         {/* Submit */}
         <button
           onClick={handleSubmit}
-          className="bg-gradient-to-r from-[#2E1D5AFF] to-[#742F85FF] to-[#08B5A4FF] text-white p-2 rounded-lg  items-center gap-2 md:text-xl  w-full"
+          className="bg-gradient-to-l from-[#063F33FF] to-[#032018FF] to-[#470A8DFF] text-white p-2 rounded-lg  items-center gap-2 md:text-xl  w-full"
         >
           {isRegister ? "Register" : "Login"}
         </button>
@@ -155,7 +155,7 @@ export default function AuthForm() {
         </div>
         <button
           onClick={handleGoogleLogin}
-          className="bg-gradient-to-r from-[#2E1D5AFF] to-[#742F85FF] to-[#08B5A4FF] text-white p-2 rounded-lg  items-center gap-2 flex justify-center md:text-xl  w-full"
+          className="bg-gradient-to-l from-[#063F33FF] to-[#032018FF] to-[#470A8DFF] text-white p-2 rounded-lg  items-center gap-2 flex justify-center md:text-xl  w-full"
         >
         <FaGoogle className="mr-1 "/> Login with Google
         </button>

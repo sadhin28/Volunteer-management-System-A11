@@ -11,6 +11,8 @@ import AddVolunteer from "../components/AddVolunteer";
 import ManageMyPosts from "../components/ManageMyPosts";
 import PrivacyPolicy from "../components/PrivacyPolicy";
 import TermsAndCondition from "../components/TermsAndCondition";
+import Profile from "@/components/Profile";
+import UpdateProfile from "@/components/UpdateProfile";
 
 const router = createBrowserRouter([
 {
@@ -54,6 +56,14 @@ const router = createBrowserRouter([
     {
         path:"/terms-and-conditions",
         element:<TermsAndCondition/>
+    },
+    {
+        path:"/my-profile",
+        element:<PrivateRoute><Profile></Profile></PrivateRoute>
+    },
+    {
+        path:'update-profile',
+        element:<PrivateRoute><UpdateProfile/></PrivateRoute>
     }
 ]
 }])
