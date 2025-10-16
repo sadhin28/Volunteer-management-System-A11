@@ -7,11 +7,14 @@ const Home = () => {
     
     return (
        <div>
-        {/* Slider Sectin */}
+        {/*Banner Slider Sectin */}
+       <section>
         <Slider/>
-        <Slider/>
-        <Slider/>
-        {/*  */}
+       </section>
+        {/*Volunteer Needs Now Section  */}
+        <section>
+         
+        </section>
         
        </div>
 
