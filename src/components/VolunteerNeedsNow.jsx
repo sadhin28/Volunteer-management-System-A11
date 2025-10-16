@@ -7,7 +7,7 @@ const VolunteerNeedsNow = () => {
 
   useEffect(() => {
     // Fetch local JSON data
-    fetch("/public/volunteerPost.json")
+    fetch('/public/volunteerPost.json')
       .then((res) => res.json())
       .then((data) => {
         const sortedData = data.sort(
