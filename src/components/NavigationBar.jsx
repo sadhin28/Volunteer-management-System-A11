@@ -81,7 +81,7 @@ const NavigationBar = () => {
               >
                 <DropdownHeader>
                   <div className="flex items-center gap-3">
-                    <div>
+                  { user && <div>
                       <Avatar
                         alt="User settings"
                         img={user?.photoURL}
@@ -89,7 +89,7 @@ const NavigationBar = () => {
                         bordered
                         size="sm"
                       />
-                    </div>
+                    </div>}
                     <div>
                       <span className="block text-sm font-medium text-gray-800">
                         {user?.displayName || "Guest"}
