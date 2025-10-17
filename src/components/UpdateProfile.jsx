@@ -1,6 +1,7 @@
 import { AuthContext } from "@/Provider/AuthProvider";
 import { useContext } from "react";
-import { useNavigate } from "react-router-dom";
+import { FaArrowAltCircleLeft } from "react-icons/fa";
+import { Link, useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 
 const UpdateProfile = () => {
@@ -20,7 +21,14 @@ const UpdateProfile = () => {
 
     };
     return (
-         <div className="min-h-[calc(100vh-320px)]  flex justify-center items-center">
+        <div>
+            <div className="w-24 hover:text-green-500 text-black relative top-3  font-bold  ">
+                <Link className="flex  items-center gap-1 " to='/my-profile'>
+                    <FaArrowAltCircleLeft />
+                    <h1>back</h1>
+                </Link>
+            </div>
+             <div className="min-h-[calc(100vh-320px)]  flex justify-center items-center">
            
             <div className="border-4 border-[#DA78E3FF]/20 hover:shadow-lg p-10 rounded-xl shadow-lg w-full max-w-lg">
                 <h2 className="text-center text-2xl font-bold mb-4">Update Profile</h2>
@@ -59,6 +67,7 @@ const UpdateProfile = () => {
                     </div>
                 </form>
             </div>
+        </div>
         </div>
     );
 };

@@ -5,6 +5,7 @@ import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { toast } from 'react-toastify';
 import { AuthContext } from '../Provider/AuthProvider';
 import useTitle from '../hooks/useTitle';
+import { FaArrowAltCircleLeft } from 'react-icons/fa';
 
 const ForgatePassword = () => {
     useTitle("Forgot password ?")
@@ -31,11 +32,18 @@ const ForgatePassword = () => {
             });
     };
     return (
-         <div className='flex items-center justify-center px-4'>
-            <div className="max-w-md mx-auto border-2 border-[#511AB7FF] shadow-md hover:shadow-lg rounded-lg overflow-hidden  grid w-11/12  justify-center items-center card bg-base-100  max-w-lg shrink-0 shadow-sm mx-auto  px-0 md:px-3 py-7 my-16 ">
+         <div>
+            <div className="w-24 hover:text-green-500 text-black relative top-5  font-bold  ">
+                <Link className="flex  items-center gap-1 " to='/'>
+                    <FaArrowAltCircleLeft />
+                    <h1>back</h1>
+                </Link>
+            </div>
+            <div className='flex items-center justify-center'>
+            <div className="md:max-w-md mx-auto border-2 border-[#511AB7FF] shadow-md hover:shadow-lg rounded-lg overflow-hidden  grid w-11/12  justify-center items-center  bg-base-100   shrink-0   px-0 md:px-3 py-10 my-10 ">
             
             <h3 className="text-center text-2xl font-semibold mb-4">Reset Your Password</h3>
-            <form className="card-body" onSubmit={handleSubmit}>
+            <form className="card-body " onSubmit={handleSubmit}>
                 <div className="form-control">
                     <label className="label">
                         <span className="label-text">Email Address</span>
@@ -65,6 +73,7 @@ const ForgatePassword = () => {
                 </small>
             </div>
         </div>
+         </div>
          </div>
     );
 };
