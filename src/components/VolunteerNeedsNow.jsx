@@ -1,10 +1,11 @@
-import { useEffect, useState } from "react";
+import { AuthContext } from "@/Provider/AuthProvider";
+import { useContext, useEffect, useState } from "react";
 import { FaHeart } from "react-icons/fa";
 import { Link } from "react-router-dom";
 
 const VolunteerNeedsNow = () => {
   const [volunteerPosts, setVolunteerPosts] = useState([]);
-
+  const {user}=useContext(AuthContext)
   useEffect(() => {
     // Fetch local JSON data
     fetch('/volunteerPost.json')
@@ -29,7 +30,8 @@ const VolunteerNeedsNow = () => {
       </div>
 
       {/* Cards Grid */}
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+     { user?
+       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
         {volunteerPosts.map((post) => (
           <div
             key={post._id}
@@ -65,17 +67,21 @@ const VolunteerNeedsNow = () => {
             </div>
           </div>
         ))}
-      </div>
+      </div>:
+       <div className="text-center text-gray-400">
+        Loading....Data...!
+        </div>
+     }
 
       {/* See All Button */}
-      <div className="flex justify-center mt-10">
+     { user && <div className="flex justify-center mt-10">
         <Link
           to="/allvolunteerneedposts"
           className="bg-[#511AB7FF] hover:bg-[#3a0d8a] text-white font-semibold py-3 px-8 rounded-xl transition-all"
         >
           See All
         </Link>
-      </div>
+      </div>}
     </div>
   );
 };
