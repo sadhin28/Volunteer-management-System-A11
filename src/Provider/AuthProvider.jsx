@@ -7,6 +7,7 @@ import app from '../firebase/firebase.config';
 export const AuthContext= createContext();
 const auth = getAuth(app)
 const Authprovider = ({children}) => {
+    const [open,setOpen]=useState(false)
    const [user,setuser]=useState(null)
    const [loading,setloading]=useState(true)
    const [unseenCount, setUnseenCount] = useState(0);
@@ -74,7 +75,9 @@ const Authprovider = ({children}) => {
     CreateNewUser,
     Logout,
     setUnseenCount,
-    unseenCount
+    unseenCount,
+    open,
+    setOpen
 
 
    }

@@ -16,10 +16,10 @@ import { FaHeart } from "react-icons/fa";
 import { IoClose } from "react-icons/io5";
 
 const NavigationBar = () => {
-  const { user, Logout } = useContext(AuthContext);
+  const { user, Logout,open,setOpen } = useContext(AuthContext);
   const [scrolled, setScrolled] = useState(false);
   const [sidebarOpen, setSidebarOpen] = useState(false);
-  const [open,setOpen]=useState(false)
+  
   console.log(open)
   const navLinks = [
     { id: 1, name: "Home", path: "/" },
