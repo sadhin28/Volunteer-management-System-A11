@@ -34,12 +34,12 @@ const Slider = () => {
     ];
     return (
 
-        <AutoplaySlider play={true} interval={3000} className='w-full aspect-[3/1]'>
+        <AutoplaySlider  play={true} interval={4000} className='w-full aspect-[3/1] '>
             {
                 slides.map((slide, index) => (
                     <div
                         key={index}
-                        className={` w-full  lg:p-5 md:p-4 p-3 flex items-center gap-5 ${slide.color}`}
+                        className={` w-full rounded-2xl  lg:p-5 md:p-4 p-3 flex items-center gap-5 ${slide.color}`}
                     >
                         <img
                             src={slide.image}
