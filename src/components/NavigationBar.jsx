@@ -241,12 +241,12 @@ const NavigationBar = () => {
         >
           {/* Modal Content */}
           <div
-            className="bg-white rounded-xl p-4 relative"
+            className="bg-gradient-to-b from-[#371585FF] to-[#5E0C77FF] to-[#138D0AFF]  rounded-xl p-4 relative"
             onClick={(e) => e.stopPropagation()} // Prevent close on image click
           >
             <button
               onClick={() => setOpen(false)}
-              className="absolute top-2 right-2 text-gray-600 hover:text-red-500 text-xl font-bold"
+              className="absolute top-2 right-2 text-red-600 hover:text-green-500 text-xl font-bold"
             >
               ×
             </button>

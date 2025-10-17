@@ -1,16 +1,23 @@
 import { AuthContext } from "@/Provider/AuthProvider";
 import { useContext } from "react";
+import { FaArrowAltCircleLeft } from "react-icons/fa";
 import { Link } from "react-router-dom";
 
 const Profile = () => {
-    const { user} = useContext(AuthContext)
-    
+    const { user, open, setOpen } = useContext(AuthContext)
+
     return (
         <div className="py-2">
-           
+            <div className="w-24 hover:text-green-500 text-white relative top-10 left-10 font-bold  ">
+                <Link className="flex  items-center gap-1 " to='/'>
+                    <FaArrowAltCircleLeft />
+                    <h1>back</h1>
+                </Link>
+            </div>
             <div className=" rounded-br-[80px]  rounded-tl-[80px] bg-gradient-to-l from-[#063F33FF] to-[#032018FF] to-[#470A8DFF] pb-7  text-white h-60 flex items-center justify-center">
+
                 <div className="text-center">
-                   
+
                     <h1 className="md:text-4xl text-xl font-bold">Welcome, {user?.
                         displayName
                     }!</h1>
@@ -24,9 +31,10 @@ const Profile = () => {
                 <div className="max-w-md mx-auto border-4 border-[#2C3D4D] shadow-md hover:shadow-lg rounded-lg overflow-hidden">
                     <div className="flex justify-center items-center p-6">
                         <img
+                            onClick={() => setOpen(true)}
                             src={user?.photoURL}
                             alt={`${user?.displayName}'s profile`}
-                            className="w-24 h-24 rounded-full object-cover border-4 border-[#2C3D4D] shadow-md"
+                            className="cursor-pointer w-24 h-24 rounded-full object-cover border-4 border-[#2C3D4D] shadow-md"
                         />
                     </div>
                     <div className="px-6 pb-6 text-center">
@@ -34,7 +42,7 @@ const Profile = () => {
                         <p className="text-gray-800 mt-2">{user?.email}</p>
                     </div>
                     <div className="flex justify-center pb-6">
-                        <Link  to='/update-profile' className="bg-gradient-to-l from-[#063F33FF] to-[#032018FF] to-[#470A8DFF] text-white px-6 py-2 rounded-lg flex items-center gap-2 md:text-xl text-xs">Update Your Profile</Link>
+                        <Link to='/update-profile' className="bg-gradient-to-l from-[#063F33FF] to-[#032018FF] to-[#470A8DFF] text-white px-6 py-2 rounded-lg flex items-center gap-2 md:text-xl text-xs">Update Your Profile</Link>
                     </div>
                 </div>
 
@@ -74,7 +82,37 @@ const Profile = () => {
                     </div>
                 </div>
             </div>
+            <div>
+                {open && open && (
+                    <div
+                        className="fixed inset-0 bg-black bg-opacity-50 flex justify-center items-center z-50"
+                        onClick={() => setOpen(false)} // Close when clicking outside
+                    >
+                        {/* Modal Content */}
+                        <div
+                            className="bg-gradient-to-b from-[#371585FF] to-[#5E0C77FF] to-[#138D0AFF]  rounded-xl p-4 relative"
+                            onClick={(e) => e.stopPropagation()} // Prevent close on image click
+                        >
+                            <button
+                                onClick={() => setOpen(false)}
+                                className="absolute top-2 right-2 text-red-600 hover:text-green-500 text-xl font-bold"
+                            >
+                                ×
+                            </button>
+
+                            <img
+                                src={user.photoURL}
+                                alt="Profile"
+                                className="w-64 h-64 rounded-full object-cover"
+                            />
+                        </div>
+                    </div>
+                )
+
+                }
+            </div>
         </div>
+
     );
 };
 
