@@ -11,7 +11,7 @@ const Footer = () => {
           <div class="mb-6 md:mb-0">
               <a href="/" class="flex gap-2 items-center">
                     <FaHeart className="text-red-500"/>
-                    <p><span className="text-green-500">Volunteer</span> Hub</p>
+                    <p className='font-bold'><span className="text-green-500">Volunteer</span> Hub</p>
                               
               </a>
           </div>
