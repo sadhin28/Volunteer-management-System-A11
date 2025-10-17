@@ -21,7 +21,7 @@ const NavigationBar = () => {
   const [sidebarOpen, setSidebarOpen] = useState(false);
   const navLinks = [
     { id: 1, name: "Home", path: "/" },
-    ...(user? [ { id: 2, name: "All Volunteers", path: "/allvolunteerneedposts" }]:[]),
+    ...(user ? [{ id: 2, name: "All Volunteers", path: "/allvolunteerneedposts" }] : []),
     { id: 3, name: "Contact", path: "/contact" },
   ];
   // Scroll effect
@@ -36,7 +36,7 @@ const NavigationBar = () => {
 
   const handleLogout = () => {
     Logout()
-      .then(() => {})
+      .then(() => { })
       .catch((error) => console.log(error));
   };
 
@@ -44,11 +44,10 @@ const NavigationBar = () => {
     <>
       {/* 🌈 Full-width navbar background */}
       <div
-        className={`fixed top-0 left-0 z-50 w-full transition-all duration-500 ${
-          scrolled
+        className={`fixed top-0 left-0 z-50 w-full transition-all duration-500 ${scrolled
             ? "bg-white/20 backdrop-blur-md shadow-md"
             : "bg-[#511AB7FF]/20 backdrop-blur-0"
-        }`}
+          }`}
       >
         {/* 🌈 Center-aligned container for navbar content */}
         <div className="max-w-7xl mx-auto px-4">
@@ -81,25 +80,38 @@ const NavigationBar = () => {
                 }
               >
                 <DropdownHeader>
-                  <span className="block text-sm font-medium text-gray-800">
-                    {user?.displayName || "Guest"}
-                  </span>
-                  {user && (
-                    <span className="block truncate text-sm text-gray-500">
-                      {user.email}
-                    </span>
-                  )}
+                  <div className="flex items-center gap-3">
+                    <div>
+                      <Avatar
+                        alt="User settings"
+                        img={user?.photoURL}
+                        rounded
+                        bordered
+                        size="sm"
+                      />
+                    </div>
+                    <div>
+                      <span className="block text-sm font-medium text-gray-800">
+                        {user?.displayName || "Guest"}
+                      </span>
+                      {user && (
+                        <span className="block truncate text-sm text-gray-500">
+                          {user.email}
+                        </span>
+                      )}
+                    </div>
+                  </div>
                 </DropdownHeader>
 
                 {user && (
                   <>
-                    <DropdownItem as={Link} to="/my-profile">
+                    <DropdownItem className="text-gray-700 hover:bg-purple-50 hover:text-[#511AB7FF]" as={Link} to="/my-profile">
                       My Profile
                     </DropdownItem>
-                    <DropdownItem as={Link} to="/add-post">
+                    <DropdownItem className="text-gray-700 hover:bg-purple-50 hover:text-[#511AB7FF]" as={Link} to="/add-post">
                       Add Volunteer Need Post
                     </DropdownItem>
-                    <DropdownItem as={Link} to="/my-posts">
+                    <DropdownItem className="text-gray-700 hover:bg-purple-50 hover:text-[#511AB7FF]" as={Link} to="/my-posts">
                       Manage My Posts
                     </DropdownItem>
                     <DropdownDivider />
@@ -108,7 +120,7 @@ const NavigationBar = () => {
                 {user ? (
                   <DropdownItem
                     onClick={handleLogout}
-                    className="hover:text-red-500"
+                    className="text-gray-700 hover:bg-purple-50 hover:text-[#B71A1AFF]"
                   >
                     Log out
                   </DropdownItem>
@@ -133,10 +145,9 @@ const NavigationBar = () => {
                   key={link.id}
                   to={link.path}
                   className={({ isActive }) =>
-                    `relative block py-2 px-3 rounded-md transition duration-200 ${
-                      isActive
-                        ? "text-[#511AB7FF] font-semibold"
-                        : "text-gray-700 hover:text-[#511AB7FF]"
+                    `relative block py-2 px-3 rounded-md transition duration-200 ${isActive
+                      ? "text-[#511AB7FF] font-semibold"
+                      : "text-gray-700 hover:text-[#511AB7FF]"
                     }
                       after:content-[''] after:absolute after:left-0 after:bottom-0 after:h-[2px] after:w-0 
                       after:bg-[#511AB7FF] after:transition-all after:duration-1000 hover:after:w-[100%]`
@@ -152,16 +163,15 @@ const NavigationBar = () => {
 
       {/* ✅ Sidebar (for small devices) */}
       <div
-        className={`fixed top-0 left-0 z-50 h-full w-64 bg-white/90 backdrop-blur-md shadow-lg transform transition-transform duration-500 ${
-          sidebarOpen ? "translate-x-0" : "-translate-x-full"
-        } md:hidden`}
+        className={`fixed top-0 left-0 z-50 h-full w-64 bg-gray-400/90 backdrop-blur-md shadow-lg transform transition-transform duration-500 ${sidebarOpen ? "translate-x-0" : "-translate-x-full"
+          } md:hidden`}
       >
         <div className="flex justify-between items-center p-4 border-b">
           <h2 className="text-2xl flex items-center gap-1  font-bold text-[#511AB7FF]">
             <FaHeart className="text-red-500" />
-              <p>
-                <span className="text-green-500">Volunteer</span> Hub
-              </p>
+            <p>
+              <span className="text-green-500">Volunteer</span> Hub
+            </p>
           </h2>
           <button
             onClick={() => setSidebarOpen(false)}
@@ -178,10 +188,9 @@ const NavigationBar = () => {
               to={link.path}
               onClick={() => setSidebarOpen(false)}
               className={({ isActive }) =>
-                `block py-2 px-3 rounded-md text-lg font-medium transition duration-200 ${
-                  isActive
-                    ? "text-[#511AB7FF] bg-purple-100"
-                    : "text-gray-700 hover:bg-purple-50 hover:text-[#511AB7FF]"
+                `block py-2 px-3 rounded-md text-lg font-medium transition duration-200 ${isActive
+                  ? "text-[#511AB7FF] bg-purple-100"
+                  : "text-gray-700 hover:bg-purple-50 hover:text-[#511AB7FF]"
                 }`
               }
             >
