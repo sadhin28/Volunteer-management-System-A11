@@ -19,6 +19,8 @@ const NavigationBar = () => {
   const { user, Logout } = useContext(AuthContext);
   const [scrolled, setScrolled] = useState(false);
   const [sidebarOpen, setSidebarOpen] = useState(false);
+  const [open,setOpen]=useState(false)
+  console.log(open)
   const navLinks = [
     { id: 1, name: "Home", path: "/" },
     ...(user ? [{ id: 2, name: "All Volunteers", path: "/allvolunteerneedposts" }] : []),
@@ -88,6 +90,8 @@ const NavigationBar = () => {
                         rounded
                         bordered
                         size="sm"
+                        onClick={()=>setOpen(true)}
+                        className="cursor-pointer"
                       />
                     </div>}
                     <div>
@@ -229,6 +233,35 @@ const NavigationBar = () => {
           onClick={() => setSidebarOpen(false)}
         ></div>
       )}
+      <div>
+        {open &&open && (
+        <div
+          className="fixed inset-0 bg-black bg-opacity-50 flex justify-center items-center z-50"
+          onClick={() => setOpen(false)} // Close when clicking outside
+        >
+          {/* Modal Content */}
+          <div
+            className="bg-white rounded-xl p-4 relative"
+            onClick={(e) => e.stopPropagation()} // Prevent close on image click
+          >
+            <button
+              onClick={() => setOpen(false)}
+              className="absolute top-2 right-2 text-gray-600 hover:text-red-500 text-xl font-bold"
+            >
+              ×
+            </button>
+
+            <img
+              src={user.photoURL}
+              alt="Profile"
+              className="w-64 h-64 rounded-full object-cover"
+            />
+          </div>
+        </div>
+      )
+          
+        }
+      </div>
     </>
   );
 };
