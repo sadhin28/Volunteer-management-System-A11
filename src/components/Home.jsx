@@ -3,7 +3,8 @@ import useTitle from '../hooks/useTitle';
 import 'react-awesome-slider/dist/styles.css';
 import Slider from './slider/Slider';
 import VolunteerNeedsNow from './VolunteerNeedsNow';
-import Faqsection from './Faqsection';
+import Faqsection from './faq/Faqsection';
+
 const Home = () => {
     useTitle("Home")
     
