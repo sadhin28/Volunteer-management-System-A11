@@ -22,7 +22,7 @@ createRoot(document.getElementById('root')).render(
       pauseOnFocusLoss
       draggable
       pauseOnHover
-      theme="dark:"
+      theme="dark"
      position='bottom-center'/>
      
   </StrictMode>
