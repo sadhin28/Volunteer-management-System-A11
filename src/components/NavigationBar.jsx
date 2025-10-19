@@ -95,8 +95,8 @@ const NavigationBar = () => {
                       />
                     </div>}
                     <div>
-                      <span className="block text-sm font-medium text-gray-800">
-                        {user?.displayName || "Guest"}
+                      <span className="block  text-sm font-medium text-gray-800">
+                        {user?.displayName || <h1 className="font-bold">Guest</h1>}
                       </span>
                       {user && (
                         <span className="block truncate text-sm text-gray-500">
@@ -124,12 +124,12 @@ const NavigationBar = () => {
                 {user ? (
                   <DropdownItem
                     onClick={handleLogout}
-                    className="text-gray-700 hover:bg-purple-50 hover:text-[#B71A1AFF]"
+                    className="text-gray-700 font-bold hover:bg-purple-50 hover:text-[#B71A1AFF]"
                   >
                     Log out
                   </DropdownItem>
                 ) : (
-                  <DropdownItem as={Link} to="/login">
+                  <DropdownItem className="font-bold hover:text-[#511AB7FF]" as={Link} to="/login">
                     Log in
                   </DropdownItem>
                 )}
@@ -167,7 +167,7 @@ const NavigationBar = () => {
 
       {/* ✅ Sidebar (for small devices) */}
       <div
-        className={`fixed top-0 left-0 z-50 h-full w-64 bg-gray-400/90 backdrop-blur-md shadow-lg transform transition-transform duration-500 ${sidebarOpen ? "translate-x-0" : "-translate-x-full"
+        className={`fixed top-0 left-0 z-50 h-full w-64 bg-gray-200/60 backdrop-blur-md shadow-lg transform transition-transform duration-500 ${sidebarOpen ? "translate-x-0" : "-translate-x-full"
           } md:hidden`}
       >
         <div className="flex justify-between items-center p-4 border-b">
@@ -201,28 +201,6 @@ const NavigationBar = () => {
               {link.name}
             </NavLink>
           ))}
-
-          <div className="border-t mt-4 pt-3">
-            {user ? (
-              <button
-                onClick={() => {
-                  handleLogout();
-                  setSidebarOpen(false);
-                }}
-                className="w-full text-left px-3 py-2 rounded-md text-red-600 hover:bg-red-100"
-              >
-                Log out
-              </button>
-            ) : (
-              <Link
-                to="/login"
-                onClick={() => setSidebarOpen(false)}
-                className="block px-3 py-2 rounded-md text-[#511AB7FF] hover:bg-purple-100"
-              >
-                Log in
-              </Link>
-            )}
-          </div>
         </nav>
       </div>
 
