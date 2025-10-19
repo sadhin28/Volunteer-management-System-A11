@@ -83,8 +83,8 @@ export default function AuthForm() {
             })
     }
   return (
-    <div className=" flex items-center justify-center  px-1 min-h-[calc(100vh-100px)]">
-      <div className="border-2  border-[#511AB7FF]/20 hover:shadow-2xl shadow-lg bg-gray-100/20 p-8 rounded-2xl shadow-lg w-full max-w-2xl ">
+    <div className=" flex items-center justify-center  px-1 py-6">
+      <div className="border-2  border-[#511AB7FF]/20 hover:shadow-2xl  bg-gray-100/20 p-8 rounded-2xl shadow-lg w-full max-w-2xl ">
         <h2 className="text-2xl font-bold mb-6 text-center text-gray-800 uppercase">
           {isRegister ? "Register" : "Login"}
         </h2>
@@ -102,7 +102,7 @@ export default function AuthForm() {
           placeholder="Enter your Email"
           value={email}
           onChange={(e) =>setEmail(e.target.value)}
-          className="w-full mb-4 px-4 py-2 border rounded-lg bg-gradient-to-r from-[#E5E2ECFF] to-[#C4AACDFF] to-[#E4E4F9FF]  focus:outline-none focus:ring-2 focus:ring-[#62299CFF]"
+          className="w-full mb-4 px-4 py-2 border rounded-lg bg-gradient-to-r from-[#E5E2ECFF]   focus:outline-none focus:ring-2 focus:ring-[#62299CFF]"
         />
 
         {/* Password */}
@@ -111,7 +111,7 @@ export default function AuthForm() {
           placeholder="Enter your Password"
           value={password}
           onChange={(e) => setPassword(e.target.value)}
-          className="w-full mb-4 px-4 py-2 border rounded-lg bg-gradient-to-r from-[#E5E2ECFF] to-[#C4AACDFF] to-[#E4E4F9FF]  focus:outline-none focus:ring-2 focus:ring-[#62299CFF]"
+          className="w-full mb-4 px-4 py-2 border rounded-lg bg-gradient-to-r from-[#E5E2ECFF]   focus:outline-none focus:ring-2 focus:ring-[#62299CFF]"
         />
 
         {/* Forgot password */}
