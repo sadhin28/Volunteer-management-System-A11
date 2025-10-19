@@ -94,7 +94,7 @@ export default function AuthForm() {
           placeholder="Enter your Name"
           value={name}
           onChange={(e) =>setname(e.target.value)}
-          className="w-full mb-4 px-4 py-2 border rounded-lg bg-gradient-to-r from-[#E5E2ECFF] to-[#C4AACDFF] to-[#E4E4F9FF]  focus:outline-none focus:ring-2 focus:ring-[#62299CFF]"
+          className="w-full mb-4 px-4 py-2 border rounded-lg bg-gradient-to-r from-[#E5E2ECFF]  to-[#E4E4F9FF]  focus:outline-none focus:ring-2 focus:ring-[#62299CFF]"
         />}
         {/* Email */}
         <input
@@ -135,14 +135,14 @@ export default function AuthForm() {
             placeholder="Enter photo URL"
             value={photoURL}
             onChange={(e) => setPhotoURL(e.target.value)}
-            className="w-full mb-4 px-4 py-2 border rounded-lg bg-gradient-to-r from-[#E5E2ECFF] to-[#C4AACDFF] to-[#E4E4F9FF]  focus:outline-none focus:ring-2 focus:ring-[#62299CFF]"
+            className="w-full mb-4 px-4 py-2 border rounded-lg bg-gradient-to-r from-[#E5E2ECFF]  to-[#E4E4F9FF]  focus:outline-none focus:ring-2 focus:ring-[#62299CFF]"
           />
         )}
 
         {/* Submit */}
         <button
           onClick={handleSubmit}
-          className="bg-gradient-to-l from-[#063F33FF] to-[#032018FF] to-[#470A8DFF] text-white p-2 rounded-lg  items-center gap-2 md:text-xl  w-full"
+          className="bg-gradient-to-l from-[#063F33FF]  to-[#470A8DFF] text-white p-2 rounded-lg  items-center gap-2 md:text-xl  w-full"
         >
           {isRegister ? "Register" : "Login"}
         </button>
@@ -155,7 +155,7 @@ export default function AuthForm() {
         </div>
         <button
           onClick={handleGoogleLogin}
-          className="bg-gradient-to-l from-[#063F33FF] to-[#032018FF] to-[#470A8DFF] text-white p-2 rounded-lg  items-center gap-2 flex justify-center md:text-xl  w-full"
+          className="bg-gradient-to-l from-[#063F33FF]  to-[#470A8DFF] text-white p-2 rounded-lg  items-center gap-2 flex justify-center md:text-xl  w-full"
         >
         <FaGoogle className="mr-1 "/> Login with Google
         </button>

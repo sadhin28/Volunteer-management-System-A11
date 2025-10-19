@@ -54,13 +54,13 @@ const ForgatePassword = () => {
                         name="email"
                         value={email}
                         onChange={handleChange}
-                        className="w-full px-4 py-2 border rounded-lg bg-gradient-to-r from-[#E5E2ECFF] to-[#C4AACDFF] to-[#E4E4F9FF]  focus:outline-none focus:ring-2 focus:ring-[#62299CFF]"
+                        className="w-full px-4 py-2 border rounded-lg bg-gradient-to-r from-[#E5E2ECFF] to-[#C4AACDFF]   focus:outline-none focus:ring-2 focus:ring-[#62299CFF]"
                         required
                     />
                 </div>
 
                 <div className="form-control mt-6">
-                    <button className="bg-gradient-to-r from-[#2E1D5AFF] to-[#742F85FF] to-[#08B5A4FF] text-white p-2 rounded-lg  items-center gap-2 md:text-xl  w-full">
+                    <button className="bg-gradient-to-r from-[#2E1D5AFF] to-[#742F85FF]  text-white p-2 rounded-lg  items-center gap-2 md:text-xl  w-full">
                         Send Reset Link
                     </button>
                 </div>
