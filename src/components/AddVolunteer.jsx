@@ -1,17 +1,16 @@
-import React, { useContext, useState } from "react";
+import React, { useContext, useState, useRef } from "react";
 import useTitle from "../hooks/useTitle";
-import { Link } from "react-router-dom";
 import { AuthContext } from "@/Provider/AuthProvider";
 import { toast } from "react-toastify";
 
 const AddVolunteer = () => {
   useTitle("Add Volunteer");
   const { user } = useContext(AuthContext);
+  const fileInputRef = useRef(null);
 
-  // ----------- INITIAL STATE ------------
   const initialFormState = {
     Thumbnail: "",
-    Post: "",
+    Post_Title: "",
     Description: "",
     Category: "",
     Location: "",
@@ -23,31 +22,21 @@ const AddVolunteer = () => {
 
   const [formData, setFormData] = useState(initialFormState);
 
-  // ----------- HANDLE INPUT CHANGE ------------
   const handleChange = (e) => {
     const { name, value } = e.target;
-    setFormData((prev) => ({
-      ...prev,
-      [name]: value,
-    }));
+    setFormData((prev) => ({ ...prev, [name]: value }));
   };
 
-  // ----------- HANDLE IMAGE UPLOAD (Base64 convert) ------------
   const handleImageUpload = (e) => {
     const file = e.target.files[0];
+    if (!file) return;
     const reader = new FileReader();
     reader.onloadend = () => {
-      setFormData((prev) => ({
-        ...prev,
-        Thumbnail: reader.result, // Base64 image link
-      }));
+      setFormData((prev) => ({ ...prev, Thumbnail: reader.result }));
     };
-    if (file) {
-      reader.readAsDataURL(file);
-    }
+    reader.readAsDataURL(file);
   };
 
-  // ----------- CATEGORY OPTIONS ------------
   const categories = [
     "Healthcare",
     "Education",
@@ -61,28 +50,42 @@ const AddVolunteer = () => {
     "Elderly Care",
   ];
 
-  // ----------- HANDLE SUBMIT ------------
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    toast.success("✅ Submitted Form Data by:", user?.displayName);
 
-    // Backend এ পাঠানো (উদাহরণ)
-    // fetch("https://your-server.com/addVolunteer", {
-    //   method: "POST",
-    //   headers: { "Content-Type": "application/json" },
-    //   body: JSON.stringify(formData),
-    // });
+    // Validate required fields
+    if (!formData.Post_Title || !formData.Description || !formData.Category) {
+      toast.error("Please fill all required fields!");
+      return;
+    }
 
-    // --- Clear form after submit ---
-    setFormData(initialFormState);
+    try {
+      const res = await fetch("http://localhost:5000/addVolunteer", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(formData),
+      });
 
-    // --- Success message ---
-   
+      if (!res.ok) throw new Error("Failed to submit");
+
+      const data = await res.json();
+      toast.success(`✅ Volunteer post added successfully by ${user?.displayName}`);
+
+      // Clear all form fields
+      setFormData(initialFormState);
+
+      // Clear file input preview
+      if (fileInputRef.current) {
+        fileInputRef.current.value = "";
+      }
+    } catch (err) {
+      console.error(err);
+      toast.error("❌ Submission failed. Check console.");
+    }
   };
 
-  // ----------- UI SECTION ------------
   return (
-    <div className="max-w-7xl my-16  mx-auto">
+    <div className="max-w-7xl my-16 mx-auto">
       <form
         onSubmit={handleSubmit}
         className="bg-[#6C4197FF]/20 border-2 p-10 rounded-lg shadow-2xl"
@@ -102,7 +105,8 @@ const AddVolunteer = () => {
               type="file"
               accept="image/*"
               onChange={handleImageUpload}
-              className=" w-full px-4 py-2 border rounded-lg bg-white focus:outline-none focus:ring-2 focus:ring-[#62299CFF]"
+              ref={fileInputRef}
+              className="w-full px-4 py-2 border rounded-lg bg-white focus:outline-none focus:ring-2 focus:ring-[#62299CFF]"
             />
             {formData.Thumbnail && (
               <img
@@ -121,9 +125,9 @@ const AddVolunteer = () => {
             <input
               required
               type="text"
-              name="Post"
+              name="Post_Title"
               placeholder="Enter Post Title"
-              value={formData.Post}
+              value={formData.Post_Title}
               onChange={handleChange}
               className="w-full px-4 py-2 border rounded-lg bg-white focus:outline-none focus:ring-2 focus:ring-[#62299CFF]"
             />
