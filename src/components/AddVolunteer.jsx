@@ -2,6 +2,7 @@ import React, { useContext, useState } from "react";
 import useTitle from "../hooks/useTitle";
 import { Link } from "react-router-dom";
 import { AuthContext } from "@/Provider/AuthProvider";
+import { toast } from "react-toastify";
 
 const AddVolunteer = () => {
   useTitle("Add Volunteer");
@@ -63,7 +64,7 @@ const AddVolunteer = () => {
   // ----------- HANDLE SUBMIT ------------
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log("✅ Submitted Form Data:", formData);
+    toast.success("✅ Submitted Form Data by:", user?.displayName);
 
     // Backend এ পাঠানো (উদাহরণ)
     // fetch("https://your-server.com/addVolunteer", {
@@ -76,7 +77,7 @@ const AddVolunteer = () => {
     setFormData(initialFormState);
 
     // --- Success message ---
-    alert("🎉 Volunteer post added successfully!");
+   
   };
 
   // ----------- UI SECTION ------------
@@ -97,6 +98,7 @@ const AddVolunteer = () => {
               Upload Thumbnail
             </label>
             <input
+              required
               type="file"
               accept="image/*"
               onChange={handleImageUpload}
@@ -117,6 +119,7 @@ const AddVolunteer = () => {
               Post Title
             </label>
             <input
+              required
               type="text"
               name="Post"
               placeholder="Enter Post Title"
@@ -132,6 +135,7 @@ const AddVolunteer = () => {
               Description
             </label>
             <textarea
+              required
               name="Description"
               rows="4"
               placeholder="Write details about this volunteer post"
@@ -147,6 +151,7 @@ const AddVolunteer = () => {
               Category
             </label>
             <select
+              required
               name="Category"
               value={formData.Category}
               onChange={handleChange}
