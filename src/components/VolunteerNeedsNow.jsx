@@ -2,13 +2,14 @@ import { AuthContext } from "@/Provider/AuthProvider";
 import { useContext, useEffect, useState } from "react";
 import { FaHeart } from "react-icons/fa";
 import { Link } from "react-router-dom";
-
+import { ClipLoader } from "react-spinners";
+import Spiner from "./Spiner";
 const VolunteerNeedsNow = () => {
   const [volunteerPosts, setVolunteerPosts] = useState([]);
   const { user } = useContext(AuthContext)
   useEffect(() => {
     // Fetch local JSON data
-    fetch('http://localhost:5000/upcoming-deadline')
+    fetch(`${import.meta.env.VITE_API}/upcoming-deadline`)
       .then((res) => res.json())
       .then((data) => {
         console.log(data)
@@ -16,7 +17,8 @@ const VolunteerNeedsNow = () => {
       })
       .catch((error) => console.error("Error loading volunteer posts:", error));
   }, []);
-
+  let [loading, setLoading] = useState(true);
+  let [color, setColor] = useState("#ffffff");
   return (
     <div className="my-10">
       {/* Section Heading */}
@@ -28,7 +30,7 @@ const VolunteerNeedsNow = () => {
       </div>
 
       {/* Cards Grid */}
-      {user ?
+      {user && volunteerPosts.length>0?
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
           {volunteerPosts.map((post) => (
             <div
@@ -67,7 +69,7 @@ const VolunteerNeedsNow = () => {
           ))}
         </div> :
         <div className="text-center text-gray-400">
-          Loading....Data...!
+          <Spiner/>
         </div>
       }
 
