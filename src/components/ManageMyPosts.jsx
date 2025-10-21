@@ -126,7 +126,7 @@ const ManageMyPosts = () => {
                     ))}
                 </div> :
                 <div className="text-center text-gray-400">
-                    <Spiner />
+                   {myPosts.length > 0 ?<Spiner />:<h1>You have no any post !</h1>}
                 </div>
             }
         </div>
