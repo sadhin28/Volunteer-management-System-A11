@@ -38,7 +38,7 @@ const VolunteerNeedsNow = () => {
       </div>
 
       {/* Cards Grid */}
-      {user && volunteerPosts.length>0?
+      {volunteerPosts.length>0?
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
           {volunteerPosts.map((post) => (
             <div
@@ -83,7 +83,7 @@ const VolunteerNeedsNow = () => {
       }
 
       {/* See All Button */}
-      {user && <div className="flex justify-center mt-10">
+      {volunteerPosts.length>0 && <div className="flex justify-center mt-10">
         <Link
           to="/allvolunteerneedposts"
           className="bg-[#511AB7FF] hover:bg-[#3a0d8a] text-white font-semibold py-3 px-8 rounded-xl transition-all"
