@@ -9,11 +9,12 @@ const Footer = () => {
     <div class="mx-auto w-full max-w-screen-xl p-4 py-6 lg:py-8">
         <div class="md:flex md:justify-between">
           <div class="mb-6 md:mb-0">
-              <a href="/" class="flex gap-2 items-center">
+              <a href="/" class="flex text-xl gap-2 items-center">
                     <FaHeart className="text-red-500"/>
                     <p className='font-bold'><span className="text-green-500">Volunteer</span> Hub</p>
                               
               </a>
+              <p className='w-2/3 py-2'>Connecting volunteers with meaningful opportunities since 2023</p>
           </div>
           <div class="grid grid-cols-2 gap-8 sm:gap-6 sm:grid-cols-3">
               <div>
@@ -21,6 +22,9 @@ const Footer = () => {
                   <ul class="text-gray-500 dark:text-gray-400 font-medium">
                       <li class="mb-4">
                           <a target='_blank' href="https://github.com/sadhin28" class="hover:underline ">Github</a>
+                      </li>
+                      <li class="mb-4">
+                          <a target='_blank' href="https://sadhin-dev-com.vercel.app" class="hover:underline ">Protfolio</a>
                       </li>
                       
                   </ul>
