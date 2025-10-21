@@ -29,39 +29,39 @@ const ManageMyPosts = () => {
         AOS.refresh();
     }, []);
     //handel delete
-    const handelDelete=(id,post)=>{
-     
-      Swal.fire({
-      title: `Click? Yes Then Delete ${post.Post_Title} Post`,
-      text: "You won't be able to revert this!",
-      icon: "warning",
-      showCancelButton: true,
-      confirmButtonColor: "#3085d6",
-      cancelButtonColor: "#d33",
-      confirmButtonText: "Yes",
-    }).then((result) => {
-      if (result.isConfirmed) {
-        
-        fetch(`${import.meta.env.VITE_API}/addVolunteer/${id}`, {
-          method: "DELETE",
-          
-        })
-          .then((res) => res.json())
-          .then((data) => {
-            if (data.deletedCount > 0) {
-              setMyposts((prev) => prev.filter((e) => e._id !== id));
-              Swal.fire({
-                title: `${post.Post_Title}`,
-                text: "Post has been deleted.",
-                icon: "success",
-              });
+    const handelDelete = (id, post) => {
+
+        Swal.fire({
+            title: `Click? Yes Then Delete ${post.Post_Title} Post`,
+            text: "You won't be able to revert this!",
+            icon: "warning",
+            showCancelButton: true,
+            confirmButtonColor: "#3085d6",
+            cancelButtonColor: "#d33",
+            confirmButtonText: "Yes",
+        }).then((result) => {
+            if (result.isConfirmed) {
+
+                fetch(`${import.meta.env.VITE_API}/addVolunteer/${id}`, {
+                    method: "DELETE",
+
+                })
+                    .then((res) => res.json())
+                    .then((data) => {
+                        if (data.deletedCount > 0) {
+                            setMyposts((prev) => prev.filter((e) => e._id !== id));
+                            Swal.fire({
+                                title: `${post.Post_Title}`,
+                                text: "Post has been deleted.",
+                                icon: "success",
+                            });
+                        }
+                    });
             }
-          });
-      }
-    });
+        });
     }
     return (
-         <div className='my-6'>
+        <div className='my-6'>
             {/* header */}
             <div>
                 <div className="text-center py-10 text-xl font-bold md:text-4xl justify-center flex items-center gap-2  mb-10">
@@ -107,15 +107,15 @@ const ManageMyPosts = () => {
                                     >
                                         View Details
                                     </Link>
-                                   
+
                                     <Link
                                         to={`/Update-my-posts/${post._id}`}
                                         className=" h-10 px-2 flex items-center bg-[#b7471a] text-white font-medium  rounded-lg hover:bg-[#822c07] transition-all"
                                     >
-                                       Update
+                                        Update
                                     </Link>
-                                     <Link
-                                        onClick={()=>handelDelete(post._id,post)}
+                                    <Link
+                                        onClick={() => handelDelete(post._id, post)}
                                         className="h-10  flex items-center hover:bg-[#078e10] text-white  font-medium   px-4 rounded-lg bg-[#1caf32] transition-all"
                                     >
                                         X
@@ -126,7 +126,11 @@ const ManageMyPosts = () => {
                     ))}
                 </div> :
                 <div className="text-center text-gray-400">
-                   {myPosts.length > 0 ?<Spiner />:<h1>You have no any post !</h1>}
+
+                    {
+                        myPosts.length <= 0 ? <h1>You have no any post !</h1>:<Spiner />
+                    }
+                
                 </div>
             }
         </div>
