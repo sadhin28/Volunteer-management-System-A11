@@ -2,8 +2,11 @@ import { AuthContext } from "@/Provider/AuthProvider";
 import { useContext, useEffect, useState } from "react";
 import { FaHeart } from "react-icons/fa";
 import { Link } from "react-router-dom";
-import { ClipLoader } from "react-spinners";
 import Spiner from "./Spiner";
+import AOS from 'aos';
+import 'aos/dist/aos.css';
+
+
 const VolunteerNeedsNow = () => {
   const [volunteerPosts, setVolunteerPosts] = useState([]);
   const { user } = useContext(AuthContext)
@@ -17,8 +20,13 @@ const VolunteerNeedsNow = () => {
       })
       .catch((error) => console.error("Error loading volunteer posts:", error));
   }, []);
-  let [loading, setLoading] = useState(true);
-  let [color, setColor] = useState("#ffffff");
+      useEffect(() => {
+           AOS.init({
+               duration: 1000,
+               once: false,
+           });
+           AOS.refresh();
+       }, []);
   return (
     <div className="my-10">
       {/* Section Heading */}
@@ -34,6 +42,7 @@ const VolunteerNeedsNow = () => {
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
           {volunteerPosts.map((post) => (
             <div
+              data-AOS="zoom-in"
               key={post._id}
               className="bg-white shadow-md rounded-2xl overflow-hidden border border-gray-100 hover:shadow-lg transition-all duration-300"
             >

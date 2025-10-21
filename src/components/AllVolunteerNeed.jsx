@@ -1,33 +1,44 @@
 import { FaHeart } from 'react-icons/fa';
 import useTitle from '../hooks/useTitle';
-import { Link,  } from 'react-router-dom';
+import { Link, } from 'react-router-dom';
 import { useEffect, useState } from 'react';
 import Spiner from './Spiner';
+import AOS from 'aos';
+import 'aos/dist/aos.css';
+
 
 const AllVolunteerNeed = () => {
     useTitle("All Volunteer Need")
-      const [volunteerPosts, setVolunteerPosts] = useState([]);
-    
-      useEffect(() => {
+    const [volunteerPosts, setVolunteerPosts] = useState([]);
+
+    useEffect(() => {
         // Fetch local JSON data
         fetch(`${import.meta.env.VITE_API}/addVolunteer`)
-          .then((res) => res.json())
-          .then((data) => {
-            console.log(data)
-            setVolunteerPosts(data); // show only 6
-          })
-          .catch((error) => console.error("Error loading volunteer posts:", error));
-      }, []);
-    
+            .then((res) => res.json())
+            .then((data) => {
+                console.log(data)
+                setVolunteerPosts(data); // show only 6
+            })
+            .catch((error) => console.error("Error loading volunteer posts:", error));
+    }, []);
+
+    //use aos animate
+    useEffect(() => {
+        AOS.init({
+            duration: 1000,
+            once: false,
+        });
+        AOS.refresh();
+    }, []);
     return (
         <div className='my-20'>
             {/* header */}
             <div>
                 <div className="text-center py-10 text-xl font-bold md:text-4xl justify-center flex items-center gap-2  mb-10">
-                        <FaHeart className="text-red-500" />
-                        <p className=" text-[#511AB7FF]">
-                          <span className="text-green-500 ">All Posted</span> Volunteer
-                        </p>
+                    <FaHeart className="text-red-500" />
+                    <p className=" text-[#511AB7FF]">
+                        <span className="text-green-500 ">All Posted</span> Volunteer
+                    </p>
                 </div>
             </div>
             {/* Card */}
@@ -36,6 +47,7 @@ const AllVolunteerNeed = () => {
                     {volunteerPosts.map((post) => (
 
                         <div
+                            data-AOS="zoom-in"
                             key={post._id}
                             className="bg-white shadow-md rounded-2xl overflow-hidden border border-gray-100 hover:shadow-lg transition-all duration-300"
                         >
@@ -71,7 +83,7 @@ const AllVolunteerNeed = () => {
                     ))}
                 </div> :
                 <div className="text-center text-gray-400">
-                    <Spiner/>
+                    <Spiner />
                 </div>
             }
         </div>
