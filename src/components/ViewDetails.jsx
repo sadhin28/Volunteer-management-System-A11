@@ -44,7 +44,7 @@ const ViewDetails = () => {
   }
 
   return (
-    <div className="max-w-7xl mx-auto my-10 p-4">
+    <div className="max-w-3xl mx-auto my-10 p-4">
       <Card className="shadow-lg rounded-2xl border border-gray-200">
         <CardHeader className="text-center space-y-2">
           <CardTitle className="text-3xl md:text-4xl font-bold text-gray-800">
@@ -55,16 +55,16 @@ const ViewDetails = () => {
           </CardDescription>
         </CardHeader>
 
-        <CardContent className="space-y-4">
-          <div className="w-full flex justify-center">
+        <CardContent className="flex flex-col md:flex-row items-start  py-6">
+          <div className="w-full flex md:justify-start">
             <img
               src={details.Thumbnail}
               alt={details.Post_Title}
-              className="w-full md:w-2/4 lg:w-2/6 rounded-xl object-cover shadow-md"
+              className="w-full  lg:w-2/4 rounded-xl object-cover shadow-md"
             />
           </div>
 
-          <div className="space-y-2 text-gray-700 text-base md:text-lg">
+          <div className="space-y-2  text-gray-700 text-base md:text-lg w-2/4 border-l-0 md:border-l md:pl-6 mt-6 md:mt-0">
             <p>
               <strong>Category:</strong> {details.Category}
             </p>
@@ -82,7 +82,7 @@ const ViewDetails = () => {
             <MdEmail/> Contact: {details.Organizer_email}
           </p>
           <button
-            className="bg-purple-600 hover:bg-blue-700 text-white px-6 py-2 rounded-xl transition-all"
+            className="bg-blue-600 hover:bg-blue-700 text-white px-6 py-2 rounded-xl transition-all"
             onClick={() => alert("Application feature coming soon!")}
           >
             Apply Now
