@@ -13,6 +13,7 @@ import PrivacyPolicy from "../components/PrivacyPolicy";
 import TermsAndCondition from "../components/TermsAndCondition";
 import Profile from "@/components/Profile";
 import UpdateProfile from "@/components/UpdateProfile";
+import ViewDetails from "@/components/ViewDetails";
 
 const router = createBrowserRouter([
 {
@@ -65,6 +66,10 @@ const router = createBrowserRouter([
     {
         path:'update-profile',
         element:<PrivateRoute><UpdateProfile/></PrivateRoute>
+    },
+    {
+        path:"/volunteer/:id",
+        element:<PrivateRoute><ViewDetails/></PrivateRoute>
     }
 ]
 }])

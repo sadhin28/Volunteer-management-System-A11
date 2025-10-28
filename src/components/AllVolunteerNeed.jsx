@@ -16,7 +16,6 @@ const AllVolunteerNeed = () => {
         fetch(`${import.meta.env.VITE_API}/addVolunteer`)
             .then((res) => res.json())
             .then((data) => {
-                console.log(data)
                 setVolunteerPosts(data); // show only 6
             })
             .catch((error) => console.error("Error loading volunteer posts:", error));

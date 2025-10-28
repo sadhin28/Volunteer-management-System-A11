@@ -13,7 +13,6 @@ const ManageMyPosts = () => {
     useTitle("Manage My Posts")
     const { user } = useContext(AuthContext)
     const [myPosts, setMyposts] = useState([])
-    console.log(myPosts)
     useEffect(() => {
         fetch(`${import.meta.env.VITE_API}/my-post?email=${user.email}`)
             .then(res => res.json())
