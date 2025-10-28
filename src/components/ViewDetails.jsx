@@ -8,8 +8,7 @@ import {
   CardHeader,
   CardTitle,
 } from "./ui/card";
-import { FaVoicemail } from "react-icons/fa";
-
+import { MdEmail } from "react-icons/md";
 const ViewDetails = () => {
   const { id } = useParams();
   const [details, setDetails] = useState(null);
@@ -79,8 +78,8 @@ const ViewDetails = () => {
         </CardContent>
 
         <CardFooter className="flex flex-col sm:flex-row justify-between items-center gap-4 border-t pt-4">
-          <p className="text-gray-600 text-sm md:text-base">
-             Contact: {details.Organizer_email}
+          <p className="flex items-center gap-2 text-gray-600 text-sm md:text-base">
+            <MdEmail/> Contact: {details.Organizer_email}
           </p>
           <button
             className="bg-blue-600 hover:bg-blue-700 text-white px-6 py-2 rounded-xl transition-all"
