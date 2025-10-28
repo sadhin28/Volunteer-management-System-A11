@@ -45,7 +45,7 @@ const ViewDetails = () => {
   }
 
   return (
-    <div className="max-w-3xl mx-auto my-10 p-4">
+    <div className="max-w-7xl mx-auto my-10 p-4">
       <Card className="shadow-lg rounded-2xl border border-gray-200">
         <CardHeader className="text-center space-y-2">
           <CardTitle className="text-3xl md:text-4xl font-bold text-gray-800">
@@ -61,7 +61,7 @@ const ViewDetails = () => {
             <img
               src={details.Thumbnail}
               alt={details.Post_Title}
-              className="w-full md:w-3/4 lg:w-2/3 rounded-xl object-cover shadow-md"
+              className="w-full md:w-2/4 lg:w-2/6 rounded-xl object-cover shadow-md"
             />
           </div>
 
