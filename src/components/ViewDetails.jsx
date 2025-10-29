@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import {
   Card,
   CardContent,
@@ -81,12 +81,12 @@ const ViewDetails = () => {
           <p className="flex items-center gap-2 text-gray-600 text-sm md:text-base">
             <MdEmail/> Contact: {details.Organizer_email}
           </p>
-          <button
+          <Link
             className="bg-blue-600 hover:bg-blue-700 text-white px-6 py-2 rounded-xl transition-all"
-            onClick={() => alert("Application feature coming soon!")}
+            to={`/Apply-Now`}
           >
             Apply Now
-          </button>
+          </Link>
         </CardFooter>
       </Card>
     </div>
