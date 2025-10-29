@@ -55,7 +55,7 @@ const AllVolunteerNeed = () => {
   return (
     <div className="my-20">
       {/* Header */}
-      <div className="text-center py-10 text-xl font-bold md:text-4xl justify-center flex items-center gap-2 mb-10">
+      <div className="text-center   font-bold md:text-3xl justify-center flex items-center gap-2 mb-10">
         <FaHeart className="text-red-500" />
         <p className="text-[#511AB7FF]">
           <span className="text-green-500">All Posted</span> Volunteer
