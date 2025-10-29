@@ -24,6 +24,5 @@ createRoot(document.getElementById('root')).render(
       pauseOnHover
       theme="dark"
      position='bottom-center'/>
-     
   </StrictMode>
 )
