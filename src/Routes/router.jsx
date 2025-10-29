@@ -14,6 +14,7 @@ import TermsAndCondition from "../components/TermsAndCondition";
 import Profile from "@/components/Profile";
 import UpdateProfile from "@/components/UpdateProfile";
 import ViewDetails from "@/components/ViewDetails";
+import ApplyNow from "@/components/ApplyNow";
 
 const router = createBrowserRouter([
 {
@@ -70,6 +71,10 @@ const router = createBrowserRouter([
     {
         path:"/volunteer/:id",
         element:<PrivateRoute><ViewDetails/></PrivateRoute>
+    },
+    {
+        path:"/Apply-Now",
+        element:<PrivateRoute><ApplyNow/></PrivateRoute>
     }
 ]
 }])
