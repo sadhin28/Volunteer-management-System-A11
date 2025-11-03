@@ -58,7 +58,7 @@ const Contact = () => {
         </div>
 
         {/* Right Side (Form) */}
-        <form ref={form} onSubmit={sendEmail} className="flex  flex-col  space-y-6   border-2 p-6 border-black bg-blue-600/30 rounded-lg shadow-lg">
+        <form ref={form} onSubmit={sendEmail} className="flex  flex-col  space-y-6   border-2 p-6 border-blue-500/20 hover:shadow-2xl bg-blue-600/30 rounded-lg shadow-lg">
           <label className="block">
             <span className="mb-1">Full name</span>
             <input
@@ -96,7 +96,7 @@ const Contact = () => {
             type="submit"
             disabled={loading}
             className={`bg-gradient-to-r from-[#2E1D5AFF] to-[#742F85FF] text-white p-2 rounded-lg w-full md:text-xl transition-all duration-300 ${
-              loading ? 'opacity-70 cursor-not-allowed' : 'hover:scale-105'
+              loading ? 'opacity-70 cursor-not-allowed' : ''
             }`}
           >
             {loading ? 'Sending...' : 'Submit'}
