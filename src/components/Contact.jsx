@@ -58,7 +58,7 @@ const Contact = () => {
         </div>
 
         {/* Right Side (Form) */}
-        <form ref={form} onSubmit={sendEmail} className="flex flex-col py-6 space-y-6 md:py-0 md:px-6">
+        <form ref={form} onSubmit={sendEmail} className="flex  flex-col  space-y-6   border-2 p-6 border-black bg-blue-600/30 rounded-lg shadow-lg">
           <label className="block">
             <span className="mb-1">Full name</span>
             <input
