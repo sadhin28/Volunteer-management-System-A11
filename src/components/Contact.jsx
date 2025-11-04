@@ -58,7 +58,7 @@ const Contact = () => {
         </div>
 
         {/* Right Side (Form) */}
-        <form ref={form} onSubmit={sendEmail} className="flex  flex-col  space-y-6   border-2 p-6 border-blue-500/20 hover:shadow-2xl bg-blue-600/30 rounded-lg shadow-lg">
+        <form ref={form} onSubmit={sendEmail} className="flex  flex-col  space-y-6   border-2 p-6 border-blue-500/20 hover:shadow-2xl  rounded-lg shadow-lg">
           <label className="block">
             <span className="mb-1">Full name</span>
             <input
@@ -66,7 +66,7 @@ const Contact = () => {
               name="from_name"
               required
               placeholder="Leroy Jenkins"
-              className="w-full px-4 py-2 border rounded-lg bg-gradient-to-r from-[#E5E2ECFF] to-[#773d8a] focus:outline-none focus:ring-2 focus:ring-[#62299CFF]"
+              className="w-full px-4 py-2 border rounded-lg bg-gradient-to-r from-[#dfd4fa] to-[#d9d1db] focus:outline-none focus:ring-2 focus:ring-[#62299CFF]"
             />
           </label>
 
@@ -77,8 +77,8 @@ const Contact = () => {
               name="from_email"
               required
               placeholder="leroy@jenkins.com"
-              className="w-full px-4 py-2 border rounded-lg bg-gradient-to-r from-[#E5E2ECFF] to-[#C4AACDFF] focus:outline-none focus:ring-2 focus:ring-[#62299CFF]"
-            />
+              className="w-full px-4 py-2 border rounded-lg bg-gradient-to-r from-[#dfd4fa] to-[#d9d1db] focus:outline-none focus:ring-2 focus:ring-[#62299CFF]"
+             />
           </label>
 
           <label className="block">
@@ -88,14 +88,14 @@ const Contact = () => {
               name="message"
               required
               placeholder="Type your message..."
-              className="w-full px-4 py-2 border rounded-lg bg-gradient-to-r from-[#E5E2ECFF] to-[#C4AACDFF] focus:outline-none focus:ring-2 focus:ring-[#62299CFF]"
+              className="w-full px-4 py-2 border rounded-lg bg-gradient-to-r from-[#dfd4fa] to-[#d9d1db] focus:outline-none focus:ring-2 focus:ring-[#62299CFF]"
             ></textarea>
           </label>
 
           <button
             type="submit"
             disabled={loading}
-            className={`bg-gradient-to-r from-[#6c4ac3] to-[#201523] text-white p-2 rounded-lg w-full md:text-xl transition-all duration-300 ${
+            className={`bg-gradient-to-r from-[#7e7691] to-[#7c5188] text-white p-2 rounded-lg w-full md:text-xl transition-all duration-300 ${
               loading ? 'opacity-70 cursor-not-allowed' : ''
             }`}
           >
