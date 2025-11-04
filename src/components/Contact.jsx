@@ -66,7 +66,7 @@ const Contact = () => {
               name="from_name"
               required
               placeholder="Leroy Jenkins"
-              className="w-full px-4 py-2 border rounded-lg bg-gradient-to-r from-[#E5E2ECFF] to-[#C4AACDFF] focus:outline-none focus:ring-2 focus:ring-[#62299CFF]"
+              className="w-full px-4 py-2 border rounded-lg bg-gradient-to-r from-[#E5E2ECFF] to-[#773d8a] focus:outline-none focus:ring-2 focus:ring-[#62299CFF]"
             />
           </label>
 
