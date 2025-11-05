@@ -82,7 +82,7 @@ const ViewDetails = () => {
             <MdEmail/> Contact: {details.Organizer_email}
           </p>
           <Link
-            className="bg-blue-600 hover:bg-white hover:border-2 hover:border-blue-700  hover:text-blue-500 text-white px-6 py-2 rounded-xl transition-all"
+            className="bg-blue-600 hover:bg-white hover:border-2 hover:border-blue-700  hover:text-blue-700 text-white px-6 py-2 rounded-xl transition-all"
             to={`/Apply-Now`}
           >
             Apply Now
