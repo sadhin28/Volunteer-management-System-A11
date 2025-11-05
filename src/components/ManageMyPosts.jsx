@@ -101,7 +101,7 @@ const ManageMyPosts = () => {
 
                                 <div className="flex items-center py-2 justify-between">
                                     <Link
-                                        to={`/view-Detail-post/${post._id}`}
+                                        to={`/volunteer/${post._id}`}
                                         className=" h-10 px-2 flex items-center bg-[#511AB7FF]  text-white font-medium  rounded-lg hover:bg-[#3a0d8a] transition-all"
                                     >
                                         View Details
