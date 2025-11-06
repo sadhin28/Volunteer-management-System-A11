@@ -118,8 +118,7 @@ const AllVolunteerNeed = () => {
                 <div className="pt-3">
                   <Link
                     to={`/volunteer/${post._id}`}
-                    className="inline-block w-full text-center bg-[#511AB7FF] text-white font-medium py-2 px-4 rounded-lg hover:bg-[#3a0d8a] transition-all"
-                  >
+ className="inline-block w-full text-center bg-[#511AB7FF] text-white font-medium py-2 px-4 rounded-lg hover:bg-white hover:text-[#511AB7FF] hover:border-2 hover:border-[#511AB7FF] border  transition-all"                  >
                     View Details
                   </Link>
                 </div>
