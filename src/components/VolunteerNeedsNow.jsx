@@ -86,8 +86,7 @@ const VolunteerNeedsNow = () => {
       {volunteerPosts.length>0 && <div className="flex justify-center mt-10">
         <Link
           to="/allvolunteerneedposts"
-          className="bg-[#511AB7FF] hover:bg-[#3a0d8a] text-white font-semibold py-3 px-8 rounded-xl transition-all"
-        >
+ className="inline-block  text-center bg-[#511AB7FF] text-white font-medium py-2 px-4 rounded-lg hover:bg-white hover:text-[#511AB7FF] hover:border-2 hover:border-[#511AB7FF] border  transition-all"        >
           See All
         </Link>
       </div>}
