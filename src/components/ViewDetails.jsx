@@ -82,8 +82,7 @@ const ViewDetails = () => {
             <MdEmail/> Contact: {details.Organizer_email}
           </p>
           <Link
-            className="bg-blue-600 hover:bg-white hover:border-2 hover:border-blue-700  hover:text-blue-700 text-white px-6 py-2 rounded-xl transition-all"
-            to={`/Apply-Now`}
+ className="inline-block  text-center bg-[#511AB7FF] text-white font-medium py-2 px-4 rounded-lg hover:bg-white hover:text-[#511AB7FF] hover:border-2 hover:border-[#511AB7FF] border  transition-all"            to={`/Apply-Now`}
           >
             Apply Now
           </Link>
