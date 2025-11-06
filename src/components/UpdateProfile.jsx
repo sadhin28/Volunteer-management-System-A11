@@ -5,70 +5,68 @@ import { Link, useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 
 const UpdateProfile = () => {
-    const navigate = useNavigate();
-    const { updateUserProfile } =useContext(AuthContext)
-      const handleUpdate = (event) => {
-        event.preventDefault();
-        const name = event.target.name.value;
-        const photo = event.target.photo.value;
-        updateUserProfile(name, photo)
-            .then(() => {
-               
-                navigate("/my-profile");
-                toast.success("Profile updated successfully")
-            })
-
-
-    };
-    return (
-        <div>
-            <div className="w-24 hover:text-green-500 text-black relative top-3  font-bold  ">
-                <Link className="flex  items-center gap-1 " to='/my-profile'>
-                    <FaArrowAltCircleLeft />
-                    <h1>back</h1>
-                </Link>
+  const navigate = useNavigate();
+  const { updateUserProfile } = useContext(AuthContext);
+  const handleUpdate = (event) => {
+    event.preventDefault();
+    const name = event.target.name.value;
+    const photo = event.target.photo.value;
+    updateUserProfile(name, photo).then(() => {
+      navigate("/my-profile");
+      toast.success("Profile updated successfully");
+    });
+  };
+  return (
+    <div>
+      <div className="w-24 hover:text-green-500 text-black relative top-3  font-bold  ">
+        <Link className="flex  items-center gap-1 " to="/my-profile">
+          <FaArrowAltCircleLeft />
+          <h1>back</h1>
+        </Link>
+      </div>
+      <div className="min-h-[calc(100vh-320px)]  flex justify-center items-center">
+        <div className="border-4 border-[#DA78E3FF]/20 hover:shadow-lg p-10 rounded-xl shadow-lg w-full max-w-lg">
+          <h2 className="text-center text-2xl font-bold mb-4">
+            Update Profile
+          </h2>
+          <form onSubmit={handleUpdate} className="space-y-4">
+            <div className="form-control">
+              <label className="label">
+                <span className="label-text">Photo URL</span>
+              </label>
+              <input
+                type="url"
+                placeholder="Enter photo URL"
+                className="w-full mb-4 px-4 py-2 border rounded-lg bg-gradient-to-r from-[#E5E2ECFF] to-[#C4AACDFF] to-[#E4E4F9FF]  focus:outline-none focus:ring-2 focus:ring-[#62299CFF]"
+                name="photo"
+                required
+              />
             </div>
-             <div className="min-h-[calc(100vh-320px)]  flex justify-center items-center">
-           
-            <div className="border-4 border-[#DA78E3FF]/20 hover:shadow-lg p-10 rounded-xl shadow-lg w-full max-w-lg">
-                <h2 className="text-center text-2xl font-bold mb-4">Update Profile</h2>
-                <form onSubmit={handleUpdate} className="space-y-4">
-                    <div className="form-control">
-                        <label className="label">
-                            <span className="label-text">Photo URL</span>
-                        </label>
-                        <input
-                            type="url"
-                            placeholder="Enter photo URL"
-                            className="w-full mb-4 px-4 py-2 border rounded-lg bg-gradient-to-r from-[#E5E2ECFF] to-[#C4AACDFF] to-[#E4E4F9FF]  focus:outline-none focus:ring-2 focus:ring-[#62299CFF]"
-                            name="photo"
-                            required
-                        />
-                    </div>
-                    <div className="form-control">
-                        <label className="label">
-                            <span className="label-text">Name</span>
-                        </label>
-                        <input
-                            type="text"
-                            placeholder="Enter name"
-                            className="w-full mb-4 px-4 py-2 border rounded-lg bg-gradient-to-r from-[#E5E2ECFF] to-[#C4AACDFF] to-[#E4E4F9FF]  focus:outline-none focus:ring-2 focus:ring-[#62299CFF]"
-                            name="name"
-                            required
-                        />
-                    </div>
-                    <div className="mt-4">
-                        <button
-                            type="submit"
- className="inline-block w-full text-center bg-[#511AB7FF] text-white font-medium py-2 px-4 rounded-lg hover:bg-white hover:text-[#511AB7FF] hover:border-2 hover:border-[#511AB7FF] border  transition-all"                        >
-                            Update Information
-                        </button>
-                    </div>
-                </form>
+            <div className="form-control">
+              <label className="label">
+                <span className="label-text">Name</span>
+              </label>
+              <input
+                type="text"
+                placeholder="Enter name"
+                className="w-full mb-4 px-4 py-2 border rounded-lg bg-gradient-to-r from-[#E5E2ECFF] to-[#C4AACDFF] to-[#E4E4F9FF]  focus:outline-none focus:ring-2 focus:ring-[#62299CFF]"
+                name="name"
+                required
+              />
             </div>
+            <div className="mt-4">
+              <button
+                type="submit"
+                className="inline-block w-full text-center bg-[#511AB7FF] text-white font-medium py-2 px-4 rounded-lg hover:bg-white hover:text-[#511AB7FF] hover:border-2 hover:border-[#511AB7FF] border  transition-all"
+              >
+                Update Information
+              </button>
+            </div>
+          </form>
         </div>
-        </div>
-    );
+      </div>
+    </div>
+  );
 };
 
 export default UpdateProfile;
