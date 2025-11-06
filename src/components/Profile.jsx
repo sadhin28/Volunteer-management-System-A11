@@ -42,7 +42,7 @@ const Profile = () => {
                         <p className="text-gray-800 mt-2">{user?.email}</p>
                     </div>
                     <div className="flex justify-center pb-6">
-                        <Link to='/update-profile' className="bg-gradient-to-l from-[#063F33FF] to-[#032018FF] to-[#470A8DFF] text-white px-6 py-2 rounded-lg flex items-center gap-2 md:text-xl text-xs">Update Your Profile</Link>
+                        <Link to='/update-profile'  className="inline-block  text-center bg-[#511AB7FF] text-white font-medium py-2 px-4 rounded-lg hover:bg-white hover:text-[#511AB7FF] hover:border-2 hover:border-[#511AB7FF] border  transition-all">Update Your Profile</Link>
                     </div>
                 </div>
 
