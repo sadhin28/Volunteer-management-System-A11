@@ -11,7 +11,7 @@ const Footer = () => {
           <div class="mb-6 md:mb-0">
               <a href="/" class="flex text-xl gap-2 items-center">
                     <FaHeart className="text-red-500"/>
-                    <p className='font-bold'><span className="text-green-500">Volunteer</span> Hub</p>
+                    <p className='font-bold text-[#511AB7FF]'><span className="text-green-500">Volunteer</span> Hub</p>
                               
               </a>
               <p className='w-2/3 py-2'>Connecting volunteers with meaningful opportunities since 2023</p>
