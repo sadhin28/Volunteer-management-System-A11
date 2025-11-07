@@ -51,9 +51,9 @@ function Faqsection() {
 
             key={idx}
             header={
-              <div className="flex hover:shadow-2xl rounded-lg justify-between items-center w-full text-left font-medium text-lg text-black">
+              <div className="flex rounded-lg justify-between items-center w-full text-left font-medium text-lg text-black">
                 {faq.question}
-                <ChevronDown className="ml-2 shrink-0 transition-transform duration-200 accordion-chevron text-[#511AB7FF]" />
+                <ChevronDown className="ml-2 shrink-0 transition-transform duration-200 accordion-chevron " />
               </div>
             }
             className=" rounded-t-lg overflow-hidden"
