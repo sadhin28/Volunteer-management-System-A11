@@ -46,7 +46,7 @@ const Footer = () => {
       <hr class="my-6  border-black sm:mx-auto dark:border-gray-700 lg:my-8" />
       <div class="sm:flex sm:items-center sm:justify-between">
         <p className="text-sm text-gray-500 dark:text-gray-400 sm:text-center">
-        © {new Date().getFullYear()} <span className="font-semibold">Volunteer Hub</span>. All rights reserved.
+        © {new Date().getFullYear()} <span className="font-semibold text-[#511AB7FF]">Volunteer Hub</span>. All rights reserved.
       </p>
           <div class="flex mt-4 sm:justify-center sm:mt-0">
               <a href="#" class="text-gray-500 hover:text-gray-900 dark:hover:text-white">
