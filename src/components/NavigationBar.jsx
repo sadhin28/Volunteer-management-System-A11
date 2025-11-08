@@ -137,7 +137,7 @@ const NavigationBar = () => {
 
               {/* Mobile Sidebar Toggle */}
               <NavbarToggle
-                className="ml-2 text-gray-600 hover:text-[#511AB7FF] block md:hidden"
+                className="ml-2 text-[#511AB7FF] block md:hidden"
                 onClick={() => setSidebarOpen(true)}
               />
             </div>
