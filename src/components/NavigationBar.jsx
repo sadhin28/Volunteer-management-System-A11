@@ -91,7 +91,7 @@ const NavigationBar = () => {
                         bordered
                         size="sm"
                         onClick={()=>setOpen(true)}
-                        className="cursor-pointer"
+                        className="cursor-pointer  "
                       />
                     </div>}
                     <div>
