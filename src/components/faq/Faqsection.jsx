@@ -62,7 +62,7 @@ function Faqsection() {
             }}
             buttonProps={{
               className:
-                "w-full  px-4 py-3 text-left border bg-[#511AB7FF]/10  focus:outline-none  rounded-t-lg",
+                "w-full  px-4 py-3 text-left border bg-[#511AB7FF]/20  focus:outline-none  rounded-t-lg",
             }}
             contentTransition>
 
