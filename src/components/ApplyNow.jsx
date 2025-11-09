@@ -15,8 +15,8 @@ const ApplyNow = () => {
     Category: "",
     Location: "",
     dateOfBirth: "",
-    Organizer_name: user?.displayName || "",
-    Organizer_email: user?.email || "",
+    applycant_name: user?.displayName || "",
+    applycant_email: user?.email || "",
   };
 
   const [formData, setFormData] = useState(initialFormState);
@@ -204,24 +204,24 @@ const ApplyNow = () => {
         <div className="mb-6 grid md:grid-cols-2 gap-4">
           <div>
             <label className="block mb-2 text-sm font-medium text-gray-900">
-              Applicant Name
+              Applycant Name
             </label>
             <input
               type="text"
-              name="applicant_name"
-              value={formData.Organizer_name}
+              name="applycant_name"
+              value={formData.applycant_name}
               readOnly
               className="w-full px-4 py-2 border rounded-lg bg-gray-100"
             />
           </div>
           <div>
             <label className="block mb-2 text-sm font-medium text-gray-900">
-              Applicant Email
+              Applycant Email
             </label>
             <input
               type="email"
-              name="applicant_email"
-              value={formData.applicant_email}
+              name="applycant_email"
+              value={formData.applycant_email}
               readOnly
               className="w-full px-4 py-2 border rounded-lg bg-gray-100"
             />
