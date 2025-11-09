@@ -204,11 +204,11 @@ const ApplyNow = () => {
         <div className="mb-6 grid md:grid-cols-2 gap-4">
           <div>
             <label className="block mb-2 text-sm font-medium text-gray-900">
-              Organizer Name
+              Applicant Name
             </label>
             <input
               type="text"
-              name="Organizer_name"
+              name="applicant_name"
               value={formData.Organizer_name}
               readOnly
               className="w-full px-4 py-2 border rounded-lg bg-gray-100"
@@ -216,12 +216,12 @@ const ApplyNow = () => {
           </div>
           <div>
             <label className="block mb-2 text-sm font-medium text-gray-900">
-              Organizer Email
+              Applicant Email
             </label>
             <input
               type="email"
-              name="Organizer_email"
-              value={formData.Organizer_email}
+              name="applicant_email"
+              value={formData.applicant_email}
               readOnly
               className="w-full px-4 py-2 border rounded-lg bg-gray-100"
             />
