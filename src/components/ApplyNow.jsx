@@ -9,13 +9,12 @@ const ApplyNow = () => {
   const fileInputRef = useRef(null);
 
   const initialFormState = {
-    Thumbnail: "",
-    Post_Title: "",
-    Description: "",
+    photo: "",
+    fullName: "",
+    coverletter: "",
     Category: "",
     Location: "",
-    No_Of_volunteers_needed: "",
-    Deadline: "",
+    dateOfBirth: "",
     Organizer_name: user?.displayName || "",
     Organizer_email: user?.email || "",
   };
@@ -98,7 +97,7 @@ const ApplyNow = () => {
           {/* Thumbnail */}
           <div>
             <label className="block mb-2 text-sm font-medium text-gray-900">
-              Upload Thumbnail
+              Enter Your Photo
             </label>
             <input
               required
@@ -108,9 +107,9 @@ const ApplyNow = () => {
               ref={fileInputRef}
               className="w-full px-4 py-2 border rounded-lg bg-white focus:outline-none focus:ring-2 focus:ring-[#62299CFF]"
             />
-            {formData.Thumbnail && (
+            {formData.photo && (
               <img
-                src={formData.Thumbnail}
+                src={formData.photo}
                 alt="preview"
                 className="mt-3 w-32 h-32 object-cover rounded-lg border"
               />
@@ -120,14 +119,14 @@ const ApplyNow = () => {
           {/* Post Title */}
           <div>
             <label className="block mb-2 text-sm font-medium text-gray-900">
-              Post Title
+              Full Name
             </label>
             <input
               required
               type="text"
-              name="Post_Title"
+              name="fullName"
               placeholder="Enter Post Title"
-              value={formData.Post_Title}
+              value={formData.fullName}
               onChange={handleChange}
               className="w-full px-4 py-2 border rounded-lg bg-white focus:outline-none focus:ring-2 focus:ring-[#62299CFF]"
             />
@@ -136,14 +135,14 @@ const ApplyNow = () => {
           {/* Description */}
           <div className="md:col-span-2">
             <label className="block mb-2 text-sm font-medium text-gray-900">
-              Description
+                Cover Letter
             </label>
             <textarea
               required
-              name="Description"
+              name="coverletter"
               rows="4"
               placeholder="Write details about this volunteer post"
-              value={formData.Description}
+              value={formData.coverletter}
               onChange={handleChange}
               className="w-full px-4 py-2 border rounded-lg bg-white focus:outline-none focus:ring-2 focus:ring-[#62299CFF]"
             />
@@ -185,30 +184,16 @@ const ApplyNow = () => {
             />
           </div>
 
-          {/* Volunteers Needed */}
-          <div>
-            <label className="block mb-2 text-sm font-medium text-gray-900">
-              No. of Volunteers Needed
-            </label>
-            <input
-              type="number"
-              name="No_Of_volunteers_needed"
-              placeholder="Enter number"
-              value={formData.No_Of_volunteers_needed}
-              onChange={handleChange}
-              className="w-full px-4 py-2 border rounded-lg bg-white focus:outline-none focus:ring-2 focus:ring-[#62299CFF]"
-            />
-          </div>
 
           {/* Deadline */}
           <div>
             <label className="block mb-2 text-sm font-medium text-gray-900">
-              Deadline
+              Date of Birth
             </label>
             <input
               type="date"
-              name="Deadline"
-              value={formData.Deadline}
+              name="dateOfBirth"
+              value={formData.dateOfBirth}
               onChange={handleChange}
               className="w-full px-4 py-2 border rounded-lg bg-white focus:outline-none focus:ring-2 focus:ring-[#62299CFF]"
             />
