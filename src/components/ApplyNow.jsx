@@ -12,7 +12,6 @@ const ApplyNow = () => {
     photo: "",
     fullName: "",
     coverletter: "",
-    Category: "",
     Location: "",
     dateOfBirth: "",
     applycant_name: user?.displayName || "",
@@ -20,7 +19,7 @@ const ApplyNow = () => {
   };
 
   const [formData, setFormData] = useState(initialFormState);
-
+  console.log(formData);
   const handleChange = (e) => {
     const { name, value } = e.target;
     setFormData((prev) => ({ ...prev, [name]: value }));
@@ -31,23 +30,11 @@ const ApplyNow = () => {
     if (!file) return;
     const reader = new FileReader();
     reader.onloadend = () => {
-      setFormData((prev) => ({ ...prev, Thumbnail: reader.result }));
+      setFormData((prev) => ({ ...prev, photo: reader.result }));
     };
     reader.readAsDataURL(file);
   };
 
-  const categories = [
-    "Healthcare",
-    "Education",
-    "Social Service",
-    "Animal Welfare",
-    "Environment",
-    "Disaster Relief",
-    "Community Development",
-    "Fundraising",
-    "Blood Donation",
-    "Elderly Care",
-  ];
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -59,7 +46,7 @@ const ApplyNow = () => {
     }
 
     try {
-      const res = await fetch(`${import.meta.env.VITE_API}`, {
+      const res = await fetch(`${import.meta.env.VITE_API}/apply-volunteer`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(formData),
@@ -132,7 +119,7 @@ const ApplyNow = () => {
             />
           </div>
 
-          {/* Description */}
+          {/* Coverletter */}
           <div className="md:col-span-2">
             <label className="block mb-2 text-sm font-medium text-gray-900">
                 Cover Letter
@@ -146,27 +133,6 @@ const ApplyNow = () => {
               onChange={handleChange}
               className="w-full px-4 py-2 border rounded-lg bg-white focus:outline-none focus:ring-2 focus:ring-[#62299CFF]"
             />
-          </div>
-
-          {/* Category */}
-          <div>
-            <label className="block mb-2 text-sm font-medium text-gray-900">
-              Category
-            </label>
-            <select
-              required
-              name="Category"
-              value={formData.Category}
-              onChange={handleChange}
-              className="w-full px-4 py-2 border rounded-lg bg-white focus:outline-none focus:ring-2 focus:ring-[#62299CFF]"
-            >
-              <option value="">Select a Category</option>
-              {categories.map((cat) => (
-                <option key={cat} value={cat}>
-                  {cat}
-                </option>
-              ))}
-            </select>
           </div>
 
           {/* Location */}
