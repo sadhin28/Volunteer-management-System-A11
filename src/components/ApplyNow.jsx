@@ -8,7 +8,7 @@ const ApplyNow = () => {
   const { user } = useContext(AuthContext);
   const fileInputRef = useRef(null);
 
-  const initialFormState = {
+  const getInitialFormState = () => ({
     photo: "",
     fullName: "",
     coverletter: "",
@@ -16,10 +16,10 @@ const ApplyNow = () => {
     dateOfBirth: "",
     applycant_name: user?.displayName || "",
     applycant_email: user?.email || "",
-  };
+  });
 
-  const [formData, setFormData] = useState(initialFormState);
-  console.log(formData);
+  const [formData, setFormData] = useState(getInitialFormState());
+
   const handleChange = (e) => {
     const { name, value } = e.target;
     setFormData((prev) => ({ ...prev, [name]: value }));
@@ -35,18 +35,22 @@ const ApplyNow = () => {
     reader.readAsDataURL(file);
   };
 
-
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    // Validate required fields
-    if (!formData.Post_Title || !formData.Description || !formData.Category) {
+    if (!formData.photo || !formData.fullName || !formData.coverletter) {
       toast.error("Please fill all required fields!");
       return;
     }
 
     try {
-      const res = await fetch(`${import.meta.env.VITE_API}/apply-volunteer`, {
+      const apiUrl = import.meta.env.VITE_API;
+      if (!apiUrl) {
+        toast.error("API URL not found. Check .env file!");
+        return;
+      }
+
+      const res = await fetch(`${apiUrl}/apply-volunteer`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(formData),
@@ -54,19 +58,14 @@ const ApplyNow = () => {
 
       if (!res.ok) throw new Error("Failed to submit");
 
-      const data = await res.json();
-      toast.success(`✅ Volunteer post added successfully by ${user?.displayName}`);
+      await res.json();
+      toast.success(`✅ Application submitted successfully by ${user?.displayName}`);
 
-      // Clear all form fields
-      setFormData(initialFormState);
-
-      // Clear file input preview
-      if (fileInputRef.current) {
-        fileInputRef.current.value = "";
-      }
+      setFormData(getInitialFormState());
+      if (fileInputRef.current) fileInputRef.current.value = "";
     } catch (err) {
-      console.error(err);
-      toast.error("❌ Submission failed. Check console.");
+      console.error("Error:", err);
+      toast.error("❌ Submission failed. Check console for details.");
     }
   };
 
@@ -81,10 +80,10 @@ const ApplyNow = () => {
         </h2>
 
         <div className="grid gap-6 mb-6 md:grid-cols-2">
-          {/* Thumbnail */}
+          {/* Photo */}
           <div>
             <label className="block mb-2 text-sm font-medium text-gray-900">
-              Enter Your Photo
+              Upload Your Photo
             </label>
             <input
               required
@@ -103,7 +102,7 @@ const ApplyNow = () => {
             )}
           </div>
 
-          {/* Post Title */}
+          {/* Full Name */}
           <div>
             <label className="block mb-2 text-sm font-medium text-gray-900">
               Full Name
@@ -112,23 +111,23 @@ const ApplyNow = () => {
               required
               type="text"
               name="fullName"
-              placeholder="Enter Post Title"
+              placeholder="Enter Full Name"
               value={formData.fullName}
               onChange={handleChange}
               className="w-full px-4 py-2 border rounded-lg bg-white focus:outline-none focus:ring-2 focus:ring-[#62299CFF]"
             />
           </div>
 
-          {/* Coverletter */}
+          {/* Cover Letter */}
           <div className="md:col-span-2">
             <label className="block mb-2 text-sm font-medium text-gray-900">
-                Cover Letter
+              Cover Letter
             </label>
             <textarea
               required
               name="coverletter"
               rows="4"
-              placeholder="Write details about this volunteer post"
+              placeholder="Write your cover letter"
               value={formData.coverletter}
               onChange={handleChange}
               className="w-full px-4 py-2 border rounded-lg bg-white focus:outline-none focus:ring-2 focus:ring-[#62299CFF]"
@@ -150,8 +149,7 @@ const ApplyNow = () => {
             />
           </div>
 
-
-          {/* Deadline */}
+          {/* Date of Birth */}
           <div>
             <label className="block mb-2 text-sm font-medium text-gray-900">
               Date of Birth
@@ -166,11 +164,11 @@ const ApplyNow = () => {
           </div>
         </div>
 
-        {/* Organizer Info */}
+        {/* Applicant Info */}
         <div className="mb-6 grid md:grid-cols-2 gap-4">
           <div>
             <label className="block mb-2 text-sm font-medium text-gray-900">
-              Applycant Name
+              Applicant Name
             </label>
             <input
               type="text"
@@ -182,7 +180,7 @@ const ApplyNow = () => {
           </div>
           <div>
             <label className="block mb-2 text-sm font-medium text-gray-900">
-              Applycant Email
+              Applicant Email
             </label>
             <input
               type="email"
@@ -204,7 +202,5 @@ const ApplyNow = () => {
     </div>
   );
 };
-
-
 
 export default ApplyNow;
