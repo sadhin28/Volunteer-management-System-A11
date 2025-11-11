@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { Link, useParams } from "react-router-dom";
 import {
   Card,
@@ -9,7 +9,9 @@ import {
   CardTitle,
 } from "./ui/card";
 import { MdEmail } from "react-icons/md";
+import { AuthContext } from "@/Provider/AuthProvider";
 const ViewDetails = () => {
+  const {user}=useContext(AuthContext);
   const { id } = useParams();
   const [details, setDetails] = useState(null);
   const [loading, setLoading] = useState(true);
@@ -81,11 +83,11 @@ const ViewDetails = () => {
           <p className="flex items-center gap-2 text-gray-600 text-sm md:text-base">
             <MdEmail/> Contact: {details.Organizer_email}
           </p>
-          <Link
- className="inline-block  text-center bg-[#511AB7FF] text-white font-medium py-2 px-4 rounded-lg hover:bg-white hover:text-[#511AB7FF] hover:border-2 hover:border-[#511AB7FF] border  transition-all"            to={`/Apply-Now`}
+         {details.Organizer_email !== user.email && <Link
+              className="inline-block  text-center bg-[#511AB7FF] text-white font-medium py-2 px-4 rounded-lg hover:bg-white hover:text-[#511AB7FF] hover:border-2 hover:border-[#511AB7FF] border  transition-all"            to={`/Apply-Now`}
           >
             Apply Now
-          </Link>
+          </Link>}
         </CardFooter>
       </Card>
     </div>
