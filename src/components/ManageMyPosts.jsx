@@ -6,7 +6,6 @@ import AOS from 'aos';
 import 'aos/dist/aos.css';
 import { Link } from 'react-router-dom';
 import { FaHeart } from 'react-icons/fa';
-import { AiTwotoneDelete } from "react-icons/ai";
 import Swal from 'sweetalert2';
 
 const ManageMyPosts = () => {
