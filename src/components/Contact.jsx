@@ -95,7 +95,7 @@ const Contact = () => {
           <button
             type="submit"
             disabled={loading}
-            className={`bg-gradient-to-r from-[#7e7691] to-[#7c5188] text-white p-2 rounded-lg w-full md:text-xl transition-all duration-300 ${
+            className={`bg-gradient-to-r from-[#7509db] to-[#5f5188] text-white p-2 rounded-lg w-full md:text-xl transition-all duration-300 ${
               loading ? 'opacity-70 cursor-not-allowed' : ''
             }`}
           >
