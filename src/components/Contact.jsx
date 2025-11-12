@@ -58,7 +58,7 @@ const Contact = () => {
         </div>
 
         {/* Right Side (Form) */}
-        <form ref={form} onSubmit={sendEmail} className="flex  flex-col  space-y-6   border-2 p-6 border-blue-500/20 hover:shadow-2xl  rounded-lg shadow-lg">
+        <form ref={form} onSubmit={sendEmail} className="flex  flex-col  space-y-6   border-2 p-6 border-[#511AB7FF] hover:shadow-2xl  rounded-lg shadow-lg">
           <label className="block">
             <span className="mb-1">Full name</span>
             <input
@@ -66,7 +66,7 @@ const Contact = () => {
               name="from_name"
               required
               placeholder="Leroy Jenkins"
-              className="w-full px-4 py-2 border rounded-lg bg-gradient-to-r from-[#dfd4fa] to-[#d9d1db] focus:outline-none focus:ring-2 focus:ring-[#62299CFF]"
+              className="w-full px-4 py-2 border rounded-lg bg-gradient-to-r from-[#cabded] to-[#d9d1db] focus:outline-none focus:ring-2 focus:ring-[#f4f0f9]"
             />
           </label>
 
@@ -77,7 +77,7 @@ const Contact = () => {
               name="from_email"
               required
               placeholder="leroy@jenkins.com"
-              className="w-full px-4 py-2 border rounded-lg bg-gradient-to-r from-[#dfd4fa] to-[#d9d1db] focus:outline-none focus:ring-2 focus:ring-[#62299CFF]"
+              className="w-full px-4 py-2 border rounded-lg bg-gradient-to-r from-[#cabded] to-[#d9d1db] focus:outline-none focus:ring-2 focus:ring-[#f4f0f9]"
              />
           </label>
 
