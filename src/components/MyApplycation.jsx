@@ -1,23 +1,27 @@
 import { AuthContext } from '@/Provider/AuthProvider';
 import React, { useState, useEffect, useContext } from 'react';
 
-const MyApplication = () => {
+const MyApplicationsTable = () => {
   const [applications, setApplications] = useState([]);
-  const [myApplication, setMyApplication] = useState(null);
+  const [selectedApplication, setSelectedApplication] = useState(null);
   const [showDetails, setShowDetails] = useState(false);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
-  const {user}=useContext(AuthContext)
-  // Your specific email to filter applications
-  const myEmail = user?.email || '';
+  
+  const {user}=useContext(AuthContext);
+  const [userEmail, setUserEmail] = useState(user?.email || '');
+  // Replace this with the actual user's email (from auth context, localStorage, etc.)
+  
 
-  // Fetch data from API
+  // Fetch applications for the specific user
   useEffect(() => {
-    const fetchApplications = async () => {
+    const fetchMyApplications = async () => {
+      if (!userEmail) return;
+
       try {
         setLoading(true);
         const response = await fetch(
-          'https://volunteer-management-server-a11.onrender.com/apply-volunteer'
+          `https://volunteer-management-server-a11.onrender.com/apply-volunteer?email=${user?.email}`
         );
 
         if (!response.ok) {
@@ -26,20 +30,6 @@ const MyApplication = () => {
 
         const data = await response.json();
         setApplications(Array.isArray(data) ? data : [data]);
-        
-        // Filter to find your application
-        const myApp = Array.isArray(data) 
-          ? data.find(app => 
-              app.applycant_email?.toLowerCase() === myEmail.toLowerCase() ||
-              app.email?.toLowerCase() === myEmail.toLowerCase()
-            )
-          : data;
-        
-        if (myApp) {
-          setMyApplication(myApp);
-        } else {
-          setError("No application found for your email address");
-        }
       } catch (err) {
         setError(err.message);
         console.error('Error fetching applications:', err);
@@ -48,15 +38,17 @@ const MyApplication = () => {
       }
     };
 
-    fetchApplications();
-  }, [myEmail]);
+    fetchMyApplications();
+  }, [userEmail]); // Re-fetch when userEmail changes
 
-  const handleViewDetails = () => {
+  const handleViewDetails = (application) => {
+    setSelectedApplication(application);
     setShowDetails(true);
   };
 
   const handleCloseDetails = () => {
     setShowDetails(false);
+    setSelectedApplication(null);
   };
 
   // Format date for display
@@ -78,15 +70,15 @@ const MyApplication = () => {
     const statusLower = (status || 'pending').toLowerCase();
     switch (statusLower) {
       case 'approved':
-        return 'bg-green-100 text-green-800 border-green-200';
+        return 'bg-green-100 text-green-800 border border-green-200';
       case 'rejected':
-        return 'bg-red-100 text-red-800 border-red-200';
+        return 'bg-red-100 text-red-800 border border-red-200';
       case 'reviewed':
-        return 'bg-yellow-100 text-yellow-800 border-yellow-200';
+        return 'bg-yellow-100 text-yellow-800 border border-yellow-200';
       case 'pending':
-        return 'bg-blue-100 text-blue-800 border-blue-200';
+        return 'bg-blue-100 text-blue-800 border border-blue-200';
       default:
-        return 'bg-gray-100 text-gray-800 border-gray-200';
+        return 'bg-gray-100 text-gray-800 border border-gray-200';
     }
   };
 
@@ -96,15 +88,15 @@ const MyApplication = () => {
         <div className="bg-white rounded-2xl shadow-xl p-8 max-w-md w-full text-center">
           <div className="flex flex-col items-center">
             <div className="animate-spin rounded-full h-16 w-16 border-b-2 border-blue-500 mb-4"></div>
-            <h3 className="text-xl font-semibold text-gray-800 mb-2">Loading Your Application</h3>
-            <p className="text-gray-600">Please wait while we fetch your application details</p>
+            <h3 className="text-xl font-semibold text-gray-800 mb-2">Loading Your Applications</h3>
+            <p className="text-gray-600">Fetching applications for {userEmail}</p>
           </div>
         </div>
       </div>
     );
   }
 
-  if (error && !myApplication) {
+  if (error) {
     return (
       <div className="min-h-screen bg-gradient-to-br from-blue-50 to-indigo-100 flex items-center justify-center p-4">
         <div className="bg-white rounded-2xl shadow-xl p-8 max-w-md w-full text-center">
@@ -113,23 +105,15 @@ const MyApplication = () => {
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8v4m0 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
             </svg>
           </div>
-          <h3 className="text-2xl font-bold text-gray-800 mb-3">Application Not Found</h3>
-          <p className="text-gray-600 mb-2">We couldn't find an application for:</p>
-          <p className="text-blue-600 font-medium mb-6">{myEmail}</p>
-          <div className="space-y-3">
-            <button
-              onClick={() => window.location.reload()}
-              className="w-full bg-blue-500 hover:bg-blue-600 text-white font-medium py-3 px-6 rounded-lg transition duration-200"
-            >
-              Try Again
-            </button>
-            <button
-              onClick={() => window.history.back()}
-              className="w-full bg-gray-500 hover:bg-gray-600 text-white font-medium py-3 px-6 rounded-lg transition duration-200"
-            >
-              Go Back
-            </button>
-          </div>
+          <h3 className="text-2xl font-bold text-gray-800 mb-3">Error Loading Applications</h3>
+          <p className="text-gray-600 mb-2">{error}</p>
+          <p className="text-blue-600 font-medium mb-6">Email: {userEmail}</p>
+          <button
+            onClick={() => window.location.reload()}
+            className="bg-blue-500 hover:bg-blue-600 text-white font-medium py-3 px-8 rounded-lg transition duration-200"
+          >
+            Try Again
+          </button>
         </div>
       </div>
     );
@@ -137,166 +121,137 @@ const MyApplication = () => {
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-blue-50 to-indigo-100 py-8">
-      <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Header */}
-        <div className="text-center mb-8">
-          <h1 className="text-4xl font-bold text-gray-900 mb-4">My Volunteer Application</h1>
-          <p className="text-lg text-gray-600 max-w-2xl mx-auto">
-            View and track the status of your volunteer application
-          </p>
-        </div>
-
-        {/* Application Card */}
-        <div className="bg-white rounded-2xl shadow-xl overflow-hidden mb-8">
-          {/* Status Banner */}
-          <div className={`bg-gradient-to-r ${
-            myApplication.status === 'approved' ? 'from-green-500 to-green-600' :
-            myApplication.status === 'rejected' ? 'from-red-500 to-red-600' :
-            myApplication.status === 'reviewed' ? 'from-yellow-500 to-yellow-600' :
-            'from-blue-500 to-blue-600'
-          } p-6 text-white`}>
-            <div className="flex flex-col md:flex-row md:items-center md:justify-between">
-              <div>
-                <h2 className="text-2xl font-bold mb-2">Application Status</h2>
-                <p className="text-blue-100">
-                  {myApplication.status === 'approved' ? 'Congratulations! Your application has been approved.' :
-                   myApplication.status === 'rejected' ? 'Thank you for your interest. Unfortunately, your application was not successful.' :
-                   myApplication.status === 'reviewed' ? 'Your application is being reviewed by our team.' :
-                   'Your application has been received and is pending review.'}
-                </p>
-              </div>
-              <div className="mt-4 md:mt-0">
-                <span className={`inline-flex items-center px-4 py-2 rounded-full text-sm font-semibold bg-white ${
-                  myApplication.status === 'approved' ? 'text-green-600' :
-                  myApplication.status === 'rejected' ? 'text-red-600' :
-                  myApplication.status === 'reviewed' ? 'text-yellow-600' :
-                  'text-blue-600'
-                }`}>
-                  {myApplication.status || 'Pending Review'}
-                </span>
-              </div>
+        <div className="bg-gradient-to-r from-blue-600 to-blue-800 rounded-2xl shadow-xl p-8 mb-8 text-white">
+          <div className="flex flex-col lg:flex-row lg:items-center lg:justify-between">
+            <div className="mb-6 lg:mb-0">
+              <h1 className="text-3xl lg:text-4xl font-bold mb-2">My Volunteer Applications</h1>
+              <p className="text-blue-100 text-lg">View and manage your submitted applications</p>
+              <p className="text-blue-200 text-sm mt-2">Logged in as: {userEmail}</p>
             </div>
-          </div>
-
-          {/* Quick Overview */}
-          <div className="p-6 border-b border-gray-200">
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-              <div className="text-center">
-                <div className="text-2xl font-bold text-gray-900 mb-1">
-                  {myApplication.applycant_name || myApplication.fullName}
-                </div>
-                <div className="text-sm text-gray-500">Applicant Name</div>
-              </div>
-              <div className="text-center">
-                <div className="text-lg font-semibold text-gray-900 mb-1 truncate">
-                  {myApplication.applycant_email}
-                </div>
-                <div className="text-sm text-gray-500">Email Address</div>
-              </div>
-              <div className="text-center">
-                <div className="text-lg font-semibold text-gray-900 mb-1">
-                  {formatDate(myApplication.dateOfBirth)}
-                </div>
-                <div className="text-sm text-gray-500">Date of Birth</div>
-              </div>
-            </div>
-          </div>
-
-          {/* Action Buttons */}
-          <div className="p-6 bg-gray-50">
-            <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <button
-                onClick={handleViewDetails}
-                className="bg-blue-500 hover:bg-blue-600 text-white font-medium py-3 px-8 rounded-lg transition duration-200 flex items-center justify-center space-x-2"
-              >
-                <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z" />
-                </svg>
-                <span>View Full Application Details</span>
-              </button>
-              
-              <button className="bg-green-500 hover:bg-green-600 text-white font-medium py-3 px-8 rounded-lg transition duration-200 flex items-center justify-center space-x-2">
-                <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
-                </svg>
-                <span>Download Application</span>
-              </button>
+            <div className="bg-white/20 backdrop-blur-sm rounded-full px-6 py-3 text-center">
+              <div className="text-2xl font-bold">{applications.length}</div>
+              <div className="text-blue-100 text-sm">My Applications</div>
             </div>
           </div>
         </div>
 
-        {/* Application Timeline */}
-        <div className="bg-white rounded-2xl shadow-xl p-6 mb-8">
-          <h3 className="text-xl font-semibold text-gray-900 mb-6">Application Timeline</h3>
-          <div className="space-y-4">
-            <div className="flex items-center space-x-4">
-              <div className="flex-shrink-0 w-8 h-8 bg-green-500 rounded-full flex items-center justify-center">
-                <svg className="w-4 h-4 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
+        {/* Applications Table */}
+        <div className="bg-white rounded-2xl shadow-lg overflow-hidden">
+          {applications.length === 0 ? (
+            <div className="text-center py-16">
+              <div className="w-24 h-24 bg-gray-100 rounded-full flex items-center justify-center mx-auto mb-6">
+                <svg className="w-12 h-12 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M20 13V6a2 2 0 00-2-2H6a2 2 0 00-2 2v7m16 0v5a2 2 0 01-2 2H6a2 2 0 01-2-2v-5m16 0h-2.586a1 1 0 00-.707.293l-2.414 2.414a1 1 0 01-.707.293h-3.172a1 1 0 01-.707-.293l-2.414-2.414A1 1 0 006.586 13H4" />
                 </svg>
               </div>
-              <div className="flex-1">
-                <p className="text-gray-900 font-medium">Application Submitted</p>
-                <p className="text-gray-500 text-sm">Your application has been successfully submitted</p>
-              </div>
-              <div className="text-sm text-gray-500">Now</div>
+              <h3 className="text-2xl font-semibold text-gray-700 mb-2">No Applications Found</h3>
+              <p className="text-gray-500 max-w-md mx-auto mb-6">
+                You haven't submitted any volunteer applications yet.
+              </p>
+              <button className="bg-blue-500 hover:bg-blue-600 text-white font-medium py-3 px-8 rounded-lg transition duration-200">
+                Apply Now
+              </button>
             </div>
-
-            <div className="flex items-center space-x-4">
-              <div className={`flex-shrink-0 w-8 h-8 rounded-full flex items-center justify-center ${
-                myApplication.status === 'reviewed' || myApplication.status === 'approved' || myApplication.status === 'rejected' 
-                  ? 'bg-green-500' 
-                  : 'bg-gray-300'
-              }`}>
-                {myApplication.status === 'reviewed' || myApplication.status === 'approved' || myApplication.status === 'rejected' ? (
-                  <svg className="w-4 h-4 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
-                  </svg>
-                ) : (
-                  <div className="w-2 h-2 bg-white rounded-full"></div>
-                )}
-              </div>
-              <div className="flex-1">
-                <p className="text-gray-900 font-medium">Under Review</p>
-                <p className="text-gray-500 text-sm">Our team is reviewing your application</p>
-              </div>
-              <div className="text-sm text-gray-500">
-                {myApplication.status === 'reviewed' || myApplication.status === 'approved' || myApplication.status === 'rejected' 
-                  ? 'Completed' 
-                  : 'Pending'}
-              </div>
+          ) : (
+            <div className="overflow-x-auto">
+              <table className="w-full">
+                <thead className="bg-gray-50 border-b-2 border-gray-200">
+                  <tr>
+                    <th className="px-6 py-4 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">
+                      Application Details
+                    </th>
+                    <th className="px-6 py-4 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">
+                      Location
+                    </th>
+                    <th className="px-6 py-4 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">
+                      Date of Birth
+                    </th>
+                    <th className="px-6 py-4 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">
+                      Status
+                    </th>
+                    <th className="px-6 py-4 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">
+                      Actions
+                    </th>
+                  </tr>
+                </thead>
+                <tbody className="divide-y divide-gray-200">
+                  {applications.map((application, index) => (
+                    <tr 
+                      key={application._id || index} 
+                      className="hover:bg-gray-50 transition duration-150"
+                    >
+                      <td className="px-6 py-4">
+                        <div className="flex items-center space-x-3">
+                          {application.photo && (
+                            <img
+                              src={application.photo}
+                              alt={application.applycant_name}
+                              className="w-10 h-10 rounded-full object-cover"
+                              onError={(e) => {
+                                e.target.src = `https://ui-avatars.com/api/?name=${
+                                  encodeURIComponent(application.applycant_name || 'Applicant')
+                                }&background=3498db&color=fff&size=40`;
+                              }}
+                            />
+                          )}
+                          <div>
+                            <div className="text-sm font-medium text-gray-900">
+                              {application.applycant_name}
+                            </div>
+                            <div className="text-sm text-gray-500">
+                              {application.applycant_email}
+                            </div>
+                            {application.fullName && application.applycant_name !== application.fullName && (
+                              <div className="text-sm text-gray-400">
+                                {application.fullName}
+                              </div>
+                            )}
+                          </div>
+                        </div>
+                      </td>
+                      <td className="px-6 py-4">
+                        <div className="text-sm text-gray-900">
+                          {application.Location || application.location || 'N/A'}
+                        </div>
+                      </td>
+                      <td className="px-6 py-4">
+                        <div className="text-sm text-gray-900">
+                          {formatDate(application.dateOfBirth)}
+                        </div>
+                      </td>
+                      <td className="px-6 py-4">
+                        <span
+                          className={`inline-flex px-3 py-1 text-xs font-semibold rounded-full ${getStatusColor(
+                            application.status
+                          )}`}
+                        >
+                          {application.status || 'Pending'}
+                        </span>
+                      </td>
+                      <td className="px-6 py-4">
+                        <button
+                          onClick={() => handleViewDetails(application)}
+                          className="bg-blue-500 hover:bg-blue-600 text-white font-medium py-2 px-4 rounded-lg transition duration-200 flex items-center space-x-2 text-sm"
+                        >
+                          <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
+                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z" />
+                          </svg>
+                          <span>View Details</span>
+                        </button>
+                      </td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
             </div>
-
-            <div className="flex items-center space-x-4">
-              <div className={`flex-shrink-0 w-8 h-8 rounded-full flex items-center justify-center ${
-                myApplication.status === 'approved' || myApplication.status === 'rejected' 
-                  ? 'bg-green-500' 
-                  : 'bg-gray-300'
-              }`}>
-                {myApplication.status === 'approved' || myApplication.status === 'rejected' ? (
-                  <svg className="w-4 h-4 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
-                  </svg>
-                ) : (
-                  <div className="w-2 h-2 bg-white rounded-full"></div>
-                )}
-              </div>
-              <div className="flex-1">
-                <p className="text-gray-900 font-medium">Decision Made</p>
-                <p className="text-gray-500 text-sm">Final decision on your application</p>
-              </div>
-              <div className="text-sm text-gray-500">
-                {myApplication.status === 'approved' || myApplication.status === 'rejected' 
-                  ? 'Completed' 
-                  : 'Pending'}
-              </div>
-            </div>
-          </div>
+          )}
         </div>
 
         {/* Details Modal */}
-        {showDetails && myApplication && (
+        {showDetails && selectedApplication && (
           <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center p-4 z-50">
             <div className="bg-white rounded-2xl shadow-2xl max-w-4xl w-full max-h-[90vh] overflow-y-auto">
               {/* Header */}
@@ -316,69 +271,64 @@ const MyApplication = () => {
 
               {/* Content */}
               <div className="p-6">
-                {/* Photo */}
-                {myApplication.photo && (
-                  <div className="flex justify-center mb-8">
+                {/* Applicant Header */}
+                <div className="flex items-center space-x-4 mb-6">
+                  {selectedApplication.photo && (
                     <img
-                      src={myApplication.photo}
-                      alt={myApplication.fullName || myApplication.applycant_name}
-                      className="w-32 h-32 rounded-full object-cover border-4 border-blue-500 shadow-lg"
+                      src={selectedApplication.photo}
+                      alt={selectedApplication.applycant_name}
+                      className="w-16 h-16 rounded-full object-cover border-2 border-blue-500"
                       onError={(e) => {
                         e.target.src = `https://ui-avatars.com/api/?name=${
-                          encodeURIComponent(
-                            myApplication.fullName || myApplication.applycant_name || 'Applicant'
-                          )
-                        }&background=3498db&color=fff&size=128`;
+                          encodeURIComponent(selectedApplication.applycant_name || 'Applicant')
+                        }&background=3498db&color=fff&size=64`;
                       }}
                     />
+                  )}
+                  <div>
+                    <h3 className="text-xl font-semibold text-gray-900">
+                      {selectedApplication.applycant_name}
+                    </h3>
+                    <p className="text-gray-600">{selectedApplication.applycant_email}</p>
                   </div>
-                )}
+                </div>
 
                 {/* Details Grid */}
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">
-                  {myApplication.fullName && (
+                  {selectedApplication.fullName && (
                     <div className="bg-gray-50 rounded-lg p-4">
                       <label className="block text-sm font-semibold text-gray-600 mb-2">
                         Full Name (English)
                       </label>
-                      <p className="text-gray-900">{myApplication.fullName}</p>
+                      <p className="text-gray-900">{selectedApplication.fullName}</p>
                     </div>
                   )}
 
-                  {myApplication.applycant_name && (
-                    <div className="bg-gray-50 rounded-lg p-4">
-                      <label className="block text-sm font-semibold text-gray-600 mb-2">
-                        Full Name (Bengali)
-                      </label>
-                      <p className="text-gray-900 text-lg">{myApplication.applycant_name}</p>
-                    </div>
-                  )}
+                  <div className="bg-gray-50 rounded-lg p-4">
+                    <label className="block text-sm font-semibold text-gray-600 mb-2">
+                      Full Name (Bengali)
+                    </label>
+                    <p className="text-gray-900 text-lg">{selectedApplication.applycant_name}</p>
+                  </div>
 
-                  {myApplication.applycant_email && (
-                    <div className="bg-gray-50 rounded-lg p-4">
-                      <label className="block text-sm font-semibold text-gray-600 mb-2">Email</label>
-                      <a
-                        href={`mailto:${myApplication.applycant_email}`}
-                        className="text-blue-600 hover:text-blue-800 break-all"
-                      >
-                        {myApplication.applycant_email}
-                      </a>
-                    </div>
-                  )}
+                  <div className="bg-gray-50 rounded-lg p-4">
+                    <label className="block text-sm font-semibold text-gray-600 mb-2">Email</label>
+                    <p className="text-gray-900 break-all">{selectedApplication.applycant_email}</p>
+                  </div>
 
-                  {(myApplication.Location || myApplication.location) && (
+                  {(selectedApplication.Location || selectedApplication.location) && (
                     <div className="bg-gray-50 rounded-lg p-4">
                       <label className="block text-sm font-semibold text-gray-600 mb-2">Location</label>
                       <p className="text-gray-900">
-                        {myApplication.Location || myApplication.location}
+                        {selectedApplication.Location || selectedApplication.location}
                       </p>
                     </div>
                   )}
 
-                  {myApplication.dateOfBirth && (
+                  {selectedApplication.dateOfBirth && (
                     <div className="bg-gray-50 rounded-lg p-4">
                       <label className="block text-sm font-semibold text-gray-600 mb-2">Date of Birth</label>
-                      <p className="text-gray-900">{formatDate(myApplication.dateOfBirth)}</p>
+                      <p className="text-gray-900">{formatDate(selectedApplication.dateOfBirth)}</p>
                     </div>
                   )}
 
@@ -386,35 +336,20 @@ const MyApplication = () => {
                     <label className="block text-sm font-semibold text-gray-600 mb-2">Application Status</label>
                     <span
                       className={`inline-flex px-3 py-1 text-sm font-semibold rounded-full border ${getStatusColor(
-                        myApplication.status
+                        selectedApplication.status
                       )}`}
                     >
-                      {myApplication.status || 'Pending Review'}
+                      {selectedApplication.status || 'Pending'}
                     </span>
                   </div>
-
-                  {/* Additional optional fields */}
-                  {myApplication.phone && (
-                    <div className="bg-gray-50 rounded-lg p-4">
-                      <label className="block text-sm font-semibold text-gray-600 mb-2">Phone</label>
-                      <p className="text-gray-900">{myApplication.phone}</p>
-                    </div>
-                  )}
-
-                  {myApplication.address && (
-                    <div className="bg-gray-50 rounded-lg p-4">
-                      <label className="block text-sm font-semibold text-gray-600 mb-2">Address</label>
-                      <p className="text-gray-900">{myApplication.address}</p>
-                    </div>
-                  )}
                 </div>
 
                 {/* Cover Letter */}
-                {myApplication.coverletter && (
+                {selectedApplication.coverletter && (
                   <div className="bg-gray-50 rounded-lg p-6">
                     <label className="block text-sm font-semibold text-gray-600 mb-3">Cover Letter</label>
                     <div className="bg-white rounded-lg p-4 border border-gray-200 max-h-48 overflow-y-auto">
-                      <p className="text-gray-700 whitespace-pre-wrap">{myApplication.coverletter}</p>
+                      <p className="text-gray-700 whitespace-pre-wrap">{selectedApplication.coverletter}</p>
                     </div>
                   </div>
                 )}
@@ -440,4 +375,4 @@ const MyApplication = () => {
   );
 };
 
-export default MyApplication;
+export default MyApplicationsTable;
