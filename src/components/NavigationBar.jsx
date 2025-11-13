@@ -25,6 +25,7 @@ const NavigationBar = () => {
     { id: 1, name: "Home", path: "/" },
     ...(user ? [{ id: 2, name: "All Volunteers", path: "/allvolunteerneedposts" }] : []),
     { id: 3, name: "Contact", path: "/contact" },
+    { id: 4, name: "My Application", path: "/myapplycation" },
   ];
   // Scroll effect
   useEffect(() => {
