@@ -39,7 +39,7 @@ const Contact = () => {
     <section className="py-6 dark:bg-gray-100 dark:text-gray-900">
       <div className="grid max-w-7xl grid-cols-1 px-6 mx-auto lg:px-8 md:grid-cols-2 md:divide-x">
         {/* Left Side */}
-        <div className="py-6 md:py-0 md:px-6">
+        <div className="py-6 md:py-0 md:px-6 relative top-28">
           <h1 className="text-4xl font-bold">
             Get in <span className="text-[#511AB7FF]">touch</span>
           </h1>
