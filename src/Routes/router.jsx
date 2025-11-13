@@ -15,6 +15,7 @@ import Profile from "@/components/Profile";
 import UpdateProfile from "@/components/UpdateProfile";
 import ViewDetails from "@/components/ViewDetails";
 import ApplyNow from "@/components/ApplyNow";
+import ApplicationTable from "@/components/MyApplycation";
 
 const router = createBrowserRouter([
 {
@@ -75,6 +76,10 @@ const router = createBrowserRouter([
     {
         path:"/Apply-Now",
         element:<PrivateRoute><ApplyNow/></PrivateRoute>
+    },
+    {
+        path:"/myapplycation",
+        element:<PrivateRoute><ApplicationTable/></PrivateRoute>
     }
 ]
 }])
