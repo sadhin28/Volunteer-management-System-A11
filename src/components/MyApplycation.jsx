@@ -33,7 +33,7 @@ const MyApplications = () => {
       ) : (
         <div className="overflow-x-auto">
           <table className="min-w-full border border-gray-300 rounded-lg divide-y divide-gray-200">
-            <thead className="bg-green-600 text-white">
+            <thead className="bg-green-500 text-white">
               <tr>
                 <th className="py-2 px-4 text-left">#</th>
                 <th className="py-2 px-4 text-left">Full Name</th>
