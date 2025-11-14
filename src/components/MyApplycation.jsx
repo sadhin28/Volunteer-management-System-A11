@@ -21,9 +21,9 @@ const MyApplications = () => {
     return <p className="text-center text-gray-500 mt-10">Loading...</p>;
 
   return (
-    <div className="mt-10 px-5">
+    <div className="mt-16 px-5">
       <h2 className="text-2xl font-bold text-center mb-5">
-        My Volunteer Applications
+        My  Applications
       </h2>
 
       {applications.length === 0 ? (
