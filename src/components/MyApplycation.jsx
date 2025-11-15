@@ -23,7 +23,7 @@ const MyApplications = () => {
   return (
     <div className=" mt-20 px-5">
       <h2 className="text-2xl font-bold text-center mb-5">
-        My  Applications
+       <span className="text-green-500">My</span> Applications
       </h2>
 
       {applications.length === 0 ? (
