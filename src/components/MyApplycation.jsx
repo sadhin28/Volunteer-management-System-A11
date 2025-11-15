@@ -21,7 +21,7 @@ const MyApplications = () => {
     return <p className="text-center text-gray-500 mt-10">Loading...</p>;
 
   return (
-    <div className="mt-16 px-5">
+    <div className=" mt-20 px-5">
       <h2 className="text-2xl font-bold text-center mb-5">
         My  Applications
       </h2>
