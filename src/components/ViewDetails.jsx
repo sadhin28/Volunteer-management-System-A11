@@ -49,11 +49,11 @@ const ViewDetails = () => {
     <div className="max-w-3xl mx-auto my-10 p-4">
       <Card className="shadow-lg rounded-2xl border border-gray-200">
         <CardHeader className="text-center space-y-2">
-          <CardTitle className="text-3xl md:text-4xl font-bold text-gray-800">
+          <CardTitle className="text-xl md:text-3xl font-bold text-gray-800">
             {details.Post_Title}
           </CardTitle>
           <CardDescription className="text-gray-500">
-            Posted by: {details.Organizer_name}
+            <span className="text-green-500">Posted by:</span> {details.Organizer_name}
           </CardDescription>
         </CardHeader>
 
