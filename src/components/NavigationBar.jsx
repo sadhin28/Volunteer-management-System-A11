@@ -24,8 +24,9 @@ const NavigationBar = () => {
   const navLinks = [
     { id: 1, name: "Home", path: "/" },
     ...(user ? [{ id: 2, name: "All Volunteers", path: "/allvolunteerneedposts" }] : []),
-    { id: 3, name: "Contact", path: "/contact" },
-    { id: 4, name: "My Application", path: "/myapplycation" },
+    ...(user ? [{ id: 4, name: "My Application", path: "/myapplycation" }] : []),
+        { id: 3, name: "Contact", path: "/contact" },
+    
   ];
   // Scroll effect
   useEffect(() => {
@@ -57,7 +58,7 @@ const NavigationBar = () => {
           <Navbar fluid rounded className="w-full bg-transparent">
             {/* Brand */}
             <NavbarBrand
-              className="flex font-bold gap-2 text-2xl items-center"
+              className="flex font-bold  text-2xl items-center"
               as={Link}
               to="/"
             >
