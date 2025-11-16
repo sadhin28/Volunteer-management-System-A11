@@ -49,7 +49,7 @@ const NavigationBar = () => {
       <div
         className={`fixed top-0 left-0 z-50 w-full transition-all duration-500 ${scrolled
             ? "bg-white/20 backdrop-blur-md shadow-md"
-            : "bg-gray-900/10  backdrop-blur-0"
+            : " bg-black/10 backdrop-blur-0"
           }`}
       >
         {/* 🌈 Center-aligned container for navbar content */}
