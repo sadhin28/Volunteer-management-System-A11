@@ -60,7 +60,7 @@ const ForgatePassword = () => {
                 </div>
 
                 <div className="form-control mt-6">
-                    <button className="bg-gradient-to-r from-[#2E1D5AFF] to-[#742F85FF]  text-white p-2 rounded-lg  items-center gap-2 md:text-xl  w-full">
+                    <button className="bg-gradient-to-r from-[#574585] to-[#a097a2]  text-white p-2 rounded-lg  items-center gap-2 md:text-xl  w-full">
                         Send Reset Link
                     </button>
                 </div>
