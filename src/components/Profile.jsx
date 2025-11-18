@@ -95,7 +95,7 @@ const Profile = () => {
                         >
                             <button
                                 onClick={() => setOpen(false)}
-                                className="absolute top-2 right-2 text-red-600 hover:text-white text-xl font-bold"
+                                className="absolute top-2 right-2 text-red-500 hover:text-white text-xl font-bold"
                             >
                                 ×
                             </button>
