@@ -90,7 +90,7 @@ const Profile = () => {
                     >
                         {/* Modal Content */}
                         <div
-                            className="bg-gradient-to-b from-[#300d81]  rounded-xl p-4 relative"
+                            className="bg-gradient-to-b from-[#6539cd]  rounded-xl p-4 relative"
                             onClick={(e) => e.stopPropagation()} // Prevent close on image click
                         >
                             <button
