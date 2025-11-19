@@ -142,8 +142,7 @@ export default function AuthForm() {
         {/* Submit */}
         <button
           onClick={handleSubmit}
-          className="bg-gradient-to-l from-[#063F33FF]  to-[#470A8DFF] text-white p-2 rounded-lg  items-center gap-2 md:text-xl  w-full"
-        >
+ className="inline-block  text-center bg-[#511AB7FF] text-white font-medium py-2 px-4 rounded-lg hover:bg-white hover:text-[#511AB7FF] hover:border-2 hover:border-[#511AB7FF] border  transition-all w-full"        >
           {isRegister ? "Register" : "Login"}
         </button>
 
