@@ -85,10 +85,10 @@ const AddVolunteer = () => {
   };
 
   return (
-    <div className="max-w-7xl my-16 mx-auto">
+    <div className="max-w-7xl mt-16 mb-2 mx-auto">
       <form
         onSubmit={handleSubmit}
-        className="bg-[#6C4197FF]/20 border-2 p-10 rounded-lg shadow-2xl"
+        className=" border-2 p-10 rounded-lg shadow-2xl"
       >
         <h2 className="text-2xl font-semibold mb-6 text-center text-[#62299CFF]">
           Add Volunteer Post
