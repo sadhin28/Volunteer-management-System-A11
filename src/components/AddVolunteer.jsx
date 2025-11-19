@@ -245,8 +245,7 @@ const AddVolunteer = () => {
 
         <button
           type="submit"
-          className="text-white bg-[#62299CFF] hover:bg-[#4f1f7d] focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto px-6 py-2.5"
-        >
+ className="inline-block  text-center bg-[#511AB7FF] text-white font-medium py-2 px-4 rounded-lg hover:bg-white hover:text-[#511AB7FF] hover:border-2 hover:border-[#511AB7FF] border  transition-all w-full"        >
           Submit
         </button>
       </form>
