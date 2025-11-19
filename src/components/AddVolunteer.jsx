@@ -90,7 +90,7 @@ const AddVolunteer = () => {
         onSubmit={handleSubmit}
         className=" border-2 p-10 rounded-lg shadow-2xl"
       >
-        <h2 className="text-2xl font-semibold mb-6 text-center text-[#62299CFF]">
+        <h2 className="text-2xl  font-bold mb-6 text-center text-[#62299CFF]">
           Add Volunteer Post
         </h2>
 
