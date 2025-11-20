@@ -28,7 +28,7 @@ const Profile = () => {
 
 
             <div className="container mx-auto mt-8">
-                <div className="max-w-md mx-auto border-4 border-[#2C3D4D] shadow-md hover:shadow-lg rounded-lg overflow-hidden">
+                <div className="max-w-md mx-auto border-4 border-[#511AB7FF] shadow-md hover:shadow-lg rounded-lg overflow-hidden">
                     <div className="flex justify-center items-center p-6">
                         <img
                             onClick={() => setOpen(true)}
