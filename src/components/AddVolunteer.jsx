@@ -88,13 +88,13 @@ const AddVolunteer = () => {
     <div className="max-w-7xl mt-16 mb-2 mx-auto">
       <form
         onSubmit={handleSubmit}
-        className=" border-2 p-10 rounded-lg shadow-2xl"
+        className="border-[#511AB7FF] border-2 p-10 rounded-lg shadow-2xl"
       >
         <h2 className="text-2xl  font-bold mb-6 text-center text-[#62299CFF]">
           Add Volunteer Post
         </h2>
 
-        <div className="grid gap-6 mb-6 md:grid-cols-2">
+        <div className="grid gap-6 mb-6  md:grid-cols-2">
           {/* Thumbnail */}
           <div>
             <label className="block mb-2 text-sm font-medium text-gray-900">
