@@ -25,7 +25,7 @@ const UpdateProfile = () => {
         </Link>
       </div>
       <div className="min-h-[calc(100vh-320px)]  flex justify-center items-center">
-        <div className="border-4 border-[#DA78E3FF]/20 hover:shadow-lg p-10 rounded-xl shadow-lg w-full max-w-lg">
+        <div className="border-4 border-[#511AB7FF] hover:shadow-lg p-10 rounded-xl shadow-lg w-full max-w-lg">
           <h2 className="text-center text-2xl font-bold mb-4">
             Update Profile
           </h2>
