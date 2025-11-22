@@ -95,7 +95,7 @@ const Contact = () => {
           <button
             type="submit"
             disabled={loading}
-            className={`border-2 hover:text-[#7509db] hover:border-[#7509db] hover:bg-white font-bold hover:animate-pulse text-white bg-[#7509db] p-2 rounded-lg w-full md:text-xl transition-all duration-300  ${
+            className={`border-2 hover:text-[#511AB7FF] hover:border-[#511AB7FF]  hover:bg-white font-bold hover:animate-pulse text-white bg-[#7509db] p-2 rounded-lg w-full md:text-xl transition-all duration-300  ${
               loading ? 'opacity-70 cursor-not-allowed' : ''
             }`}
           >
