@@ -34,7 +34,7 @@ const Profile = () => {
                             onClick={() => setOpen(true)}
                             src={user?.photoURL}
                             alt={`${user?.displayName}'s profile`}
-                            className="cursor-pointer w-24 h-24 rounded-full object-cover border-4 border-[#2C3D4D] shadow-md"
+                            className="cursor-pointer w-24 h-24 rounded-full object-cover border-4 border-[#2f0e90] shadow-md"
                         />
                     </div>
                     <div className="px-6 pb-6 text-center">
