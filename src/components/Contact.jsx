@@ -39,7 +39,7 @@ const Contact = () => {
     <section className="py-6 dark:bg-gray-100 dark:text-gray-900">
       <div className="grid max-w-7xl grid-cols-1 px-6 mx-auto lg:px-8 md:grid-cols-2 md:divide-x">
         {/* Left Side */}
-        <div className="py-6 md:py-0 md:px-6 relative top-28">
+        <div className="py-6 md:py-0 md:px-6 relative md:top-28">
           <h1 className="text-4xl font-bold">
             Get in <span className="text-[#511AB7FF]">touch</span>
           </h1>
@@ -95,7 +95,7 @@ const Contact = () => {
           <button
             type="submit"
             disabled={loading}
-            className={`bg-gradient-to-r from-[#7509db] to-[#5f5188] text-white p-2 rounded-lg w-full md:text-xl transition-all duration-300 ${
+            className={`border-2 hover:text-[#7509db] hover:border-[#7509db] hover:bg-white font-bold hover:animate-pulse text-white bg-[#7509db] p-2 rounded-lg w-full md:text-xl transition-all duration-300  ${
               loading ? 'opacity-70 cursor-not-allowed' : ''
             }`}
           >
