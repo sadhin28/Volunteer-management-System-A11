@@ -84,7 +84,7 @@ export default function AuthForm() {
     }
   return (
     <div className=" flex items-center justify-center  px-1 py-6">
-      <div className="border-2  border-[#511AB7FF]/20 hover:shadow-2xl  bg-gray-100/20 p-8 rounded-2xl shadow-lg w-full max-w-2xl ">
+      <div className="border-2  border-[#511AB7FF] hover:shadow-2xl  bg-gray-100/20 p-8 rounded-2xl shadow-lg w-full max-w-2xl ">
         <h2 className="text-2xl font-bold mb-6 text-center text-gray-800 uppercase">
           {isRegister ? "Register" : "Login"}
         </h2>
