@@ -45,7 +45,7 @@ const MyApplications = () => {
               {applications.map((app, index) => (
                 <tr
                   key={app._id}
-                  className="border-b hover:bg-gray-200 transition-colors"
+                  className="border-b hover:bg-green-200 transition-colors"
                 >
                   <td className="py-2 px-4 text-green-500">{index + 1}</td>
                   <td className="py-2 px-4">{app.fullName || "N/A"}</td>
