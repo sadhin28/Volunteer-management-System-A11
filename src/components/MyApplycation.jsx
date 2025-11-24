@@ -35,7 +35,7 @@ const MyApplications = () => {
           <table className="min-w-full border border-gray-300 rounded-lg divide-y divide-gray-200">
             <thead className="bg-[#511AB7FF] text-white">
               <tr>
-                <th className="py-2 px-4 text-left">No</th>
+                <th className="py-2 px-4 text-left ">No</th>
                 <th className="py-2 px-4 text-left">Full Name</th>
                 <th className="py-2 px-4 text-left">Email</th>
                 <th className="py-2 px-4 text-left">Location</th>
@@ -47,7 +47,7 @@ const MyApplications = () => {
                   key={app._id}
                   className="border-b hover:bg-gray-200 transition-colors"
                 >
-                  <td className="py-2 px-4">{index + 1}</td>
+                  <td className="py-2 px-4 text-green-500">{index + 1}</td>
                   <td className="py-2 px-4">{app.fullName || "N/A"}</td>
                   <td className="py-2 px-4">{app.applycant_email || "N/A"}</td>
                   <td className="py-2 px-4">{app.Location || "N/A"}</td>
