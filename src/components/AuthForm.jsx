@@ -85,7 +85,7 @@ export default function AuthForm() {
   return (
     <div className=" flex items-center justify-center  px-1 py-6">
       <div className="border-2  border-[#511AB7FF] hover:shadow-2xl  bg-gray-100/20 p-8 rounded-2xl shadow-lg w-full max-w-2xl ">
-        <h2 className="text-2xl font-bold mb-6 text-center text-gray-800 uppercase">
+        <h2 className="text-2xl font-bold mb-6 text-center text-green-500 uppercase">
           {isRegister ? "Register" : "Login"}
         </h2>
         {/* name */}
@@ -142,7 +142,7 @@ export default function AuthForm() {
         {/* Submit */}
         <button
           onClick={handleSubmit}
- className="inline-block  text-center bg-[#511AB7FF] text-white font-medium py-2 px-4 rounded-lg hover:bg-white hover:text-[#511AB7FF] hover:border-2 hover:border-[#511AB7FF] border  transition-all w-full"        >
+ className="inline-block  text-center  bg-[#511AB7FF] text-white font-medium py-2 px-4 rounded-lg hover:bg-white hover:text-[#511AB7FF] hover:border-2 hover:border-[#511AB7FF] border  transition-all w-full"        >
           {isRegister ? "Register" : "Login"}
         </button>
 
