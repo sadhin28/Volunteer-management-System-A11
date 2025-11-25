@@ -43,7 +43,7 @@ function Faqsection() {
     });
   }, []);
   return (
-    <section id="faq" className=" max-w-9xl bg-white border-2 shadow-lg rounded-2xl p-10  mx-auto px-4 mb-10">
+    <section id="faq" className="border-[#511AB7FF] max-w-9xl bg-white border-2 shadow-lg rounded-2xl p-10  mx-auto px-4 mb-10">
       <h2 className="text-xl text-[#511AB7FF]  md:text-3xl font-bold mb-6 text-center py-2"><span className="text-green-500">Frequently Asked</span> Questions</h2>
       <Accordion data-aos="zoom-in" className="space-y-2 ">
         {faqs?.map((faq, idx) => (
