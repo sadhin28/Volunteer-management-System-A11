@@ -44,7 +44,7 @@ const VolunteerNeedsNow = () => {
             <div
               data-AOS="zoom-in"
               key={post._id}
-              className="bg-white shadow-md rounded-2xl overflow-hidden border border-gray-100 hover:shadow-lg transition-all duration-300"
+              className="bg-white shadow-md rounded-2xl overflow-hidden border border-[#511AB7FF] hover:shadow-lg transition-all duration-300"
             >
               <img
                 src={post.Thumbnail}

@@ -32,7 +32,7 @@ const AllVolunteerNeed = () => {
     fetchVolunteers();
   }, []);
 
-  // 🧩 Initialize AOS
+  // Initialize AOS
   useEffect(() => {
     AOS.init({
       duration: 1000,
@@ -40,7 +40,7 @@ const AllVolunteerNeed = () => {
     });
   }, []);
 
-  // 🔍 Filter posts on search term change
+  // Filter posts on search term change
   useEffect(() => {
     if (searchTerm.trim() === "") {
       setFilteredPosts(volunteerPosts);
@@ -90,7 +90,7 @@ const AllVolunteerNeed = () => {
             <div
               data-aos="zoom-in"
               key={post._id}
-              className="bg-white shadow-md rounded-2xl overflow-hidden border border-gray-100 hover:shadow-lg transition-all duration-300"
+              className="bg-white  shadow-md rounded-2xl overflow-hidden border border-[#511AB7FF] hover:shadow-lg transition-all duration-300"
             >
               <img
                 src={post.Thumbnail}
