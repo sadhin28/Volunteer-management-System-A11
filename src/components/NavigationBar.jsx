@@ -58,7 +58,7 @@ const NavigationBar = () => {
           <Navbar fluid rounded className="w-full bg-transparent">
             {/* Brand */}
             <NavbarBrand
-              className="flex font-bold  text-2xl items-center"
+              className="flex gap-1 font-bold  text-2xl items-center"
               as={Link}
               to="/"
             >
