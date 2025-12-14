@@ -47,7 +47,7 @@ const ViewDetails = () => {
 
   return (
     <div className="max-w-3xl mx-auto my-10 p-4">
-      <Card className="shadow-lg bg-blue-400/20 rounded-2xl border border-gray-200">
+      <Card className="shadow-lg bg-blue-400/20 rounded-2xl border border-gray-300">
         <CardHeader className="text-center space-y-2">
           <CardTitle className="text-xl md:text-3xl font-bold">
             {details.Post_Title}
